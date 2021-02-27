@@ -24,7 +24,7 @@ cartas.forEach(carta => {
     let img = document.createElement("IMG");
     img.src = carta.image;
     
-    let contenedor = document.getElementsById("contenedorCartasJugador")
+    let contenedor = document.getElementById("contenedorCartasJugador")
     contenedor.append(img)
 });
 }

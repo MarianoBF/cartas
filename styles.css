@@ -1,3 +1,14 @@
 body {
     background: green;
 }
+
+.contenedorCartas {
+    max-width: 90vw;
+    margin: 2vh auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.contenedorCartas img {
+    max-width: 15vw;
+}
