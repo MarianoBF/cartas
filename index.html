@@ -11,12 +11,15 @@
     <div id="contenedorCartasJugador" class="contenedorCartas">        
     </div>
 
-    <button>Repartir cartas (nuevo partido)</button>
-    <button>Comparar valores</button>
-    <button>Mostrar cartas y cerrar</button>
-    <button>Mostrar Reglas</button>
+    <div class="botonera">
+        <button id="repartir">Iniciar partido</button>
+        <button id="puntuar">Comparar puntaje</button>
+        <input id="status" value="Estado del juego" readonly>
+        <button id="cerrar">Mostrar cartas y cerrar</button>
+        <button id="reglas">Mostrar Reglas</button>
+    </div>
 
-    <div id="contenedorCartasPC" class="contenedorCartas"> 
+    <div id="contenedorCartasPC" class="contenedorCartas oculto"> 
         <img src="./images/reverso.png" alt="reverso de carta">       
         <img src="./images/reverso.png" alt="reverso de carta">       
         <img src="./images/reverso.png" alt="reverso de carta">       
@@ -24,6 +27,9 @@
         <img src="./images/reverso.png" alt="reverso de carta">       
     </div>
 
+    <script src="./scripts/classes.js"></script>
+    <script src="./scripts/functions.js"></script>
     <script src="./scripts/script.js"></script>
+
 </body>
 </html>

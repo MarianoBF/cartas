@@ -1,30 +1,25 @@
+//let mazo = new Mazo(traerMazoEntero()) //; ------> Esto se puede?
+
 let mazo;
 
-async function traerCartas() {
-    let datos = await fetch("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1")
-    mazo = await datos.json()
-    return mazo    
-}
+let preMazo = traerMazoEntero().then(data => mazo = new Mazo (data));
 
-async function mostrarCartas() {
-    let datos = await fetch(`https://deckofcardsapi.com/api/deck/${mazo.deck_id}/draw/?count=2`)
-    cartas = await datos.json()
-    dibujarCartas(cartas.cards)
-    
-    return "ok"
-}
+let jugador = new Jugador("Jug1", true)
 
-traerCartas().then(()=>
-mostrarCartas()
-)
+let jugador2 = new Jugador("PC", false)
 
-function dibujarCartas(cartas) {
-cartas.forEach(carta => {
-    console.log(carta)
-    let img = document.createElement("IMG");
-    img.src = carta.image;
-    
-    let contenedor = document.getElementById("contenedorCartasJugador")
-    contenedor.append(img)
-});
-}
+let partido = new Partido()
+
+let jugadores = [jugador, jugador2]
+
+let contenedorCartasPC = document.getElementById("contenedorCartasPC")
+
+document.getElementById("repartir").addEventListener("click", () => {partido.iniciarPartida()})
+
+document.getElementById("puntuar").addEventListener("click", () => {partido.compararValores()})
+
+//document.getElementById("cerrar")
+
+document.getElementById("reglas").addEventListener("click", mostrarReglas)
+
+statusJuego = document.getElementById("status")
