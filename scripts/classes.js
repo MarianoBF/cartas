@@ -15,6 +15,7 @@ class Jugador {
     puntos;
     puntaje_mano;
     esHumano;
+    manosGanadas;//?
     
     constructor(nombre, esHumano) {
         this.nombre = nombre;
@@ -60,11 +61,11 @@ class Jugador {
 
 class Partido {
     id;
-    manos_jugadas;
-    
+    manosJugadas;
+
     constructor() {
         this.id = new Date()
-        this.manos_jugadas = 0;
+        this.manosJugadas = 0;
     }
 
     iniciarPartida() {
@@ -102,33 +103,41 @@ class Partido {
 
         setTimeout(() => {
             if (jugador.consultarPuntajeMano() > jugador2.consultarPuntajeMano()) 
-                {alert("Ganó " + jugador.nombre)
+                {alert("Esta mano la ganó " + jugador.nombre)
             } else if ((jugador2.consultarPuntajeMano() > jugador.consultarPuntajeMano())) {
-                    alert("Ganó " + jugador2.nombre)
+                    alert("Esta mano la ganó " + jugador2.nombre)
             } else {alert("Empate")}
-        }, 2000)
+        }, 500)
     }
 
     cerrarMano() {
         contenedorReverso.classList.toggle("oculto")
-        contenedorCartasPC.classList.toggle("contenedorCartas")
         jugadores.forEach(jugador => {
             jugador.mostrarCartasPC()
-            statusJuego.innerText += "Preparando siguiente mano..."
-            jugador.limpiar()
         })
+        statusJuego.innerText += "Preparando siguiente mano..."
+        jugador.limpiar()
         cerrar.disabled = true;
-        this.manos_jugadas++;
+        this.manosJugadas++;
     }
 
     terminarPartida() {
+        contenedorReverso.classList.toggle("oculto")
+        jugadores.forEach(jugador => {
+            jugador.mostrarCartasPC()
+        })
+        statusJuego.innerText += "Partido finalizado"
+
+
         let jugadorGanador;
         let jugadorPerdedor;
         let puntosGanador;
         let puntosPerdedor;
         
         jugador.consultarPuntos() > jugador2.consultarPuntos() ? (jugadorGanador = jugador.consultarNombre()) && (puntosGanador = jugador.consultarPuntos()) && (jugadorPerdedor = jugador2.consultarNombre()) && (puntosPerdedor = jugador2.consultarPuntos()) : (jugadorGanador = jugador2.consultarNombre()) && (puntosGanador = jugador2.consultarPuntos()) && (jugadorPerdedor = jugador.consultarNombre()) && (puntosPerdedor = jugador.consultarPuntos());
-        alert(`El ganador de la partida es ${jugadorGanador} con ${puntosGanador} contra ${puntosPerdedor} del perdedor ${jugadorPerdedor}`)
-        
+        setTimeout(()=>alert(`El ganador de la partida es ${jugadorGanador} con ${puntosGanador} contra ${puntosPerdedor} del perdedor ${jugadorPerdedor}, ¿quién ganó más manos?`),2000)
+ 
+        //location.reload()
+
     }
 }

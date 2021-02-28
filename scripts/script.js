@@ -1,17 +1,11 @@
-//let mazo = new Mazo(traerMazoEntero()) //; ------> Esto se puede?
-
 let mazo;
-
 let preMazo = traerMazoEntero().then(data => mazo = new Mazo (data));
 
 let jugador = new Jugador("Humano", true)
-
 let jugador2 = new Jugador("PC", false)
-
-let partido = new Partido()
-
 let jugadores = [jugador, jugador2]
 
+let partido = new Partido()
 
 //Referencias
 let contenedorReverso = document.getElementById("contenedorReverso")
@@ -25,14 +19,14 @@ let reglas = document.getElementById("reglas")
 let statusJuego = document.getElementById("status")
 
 //Event listeners
+reglas.addEventListener("click", mostrarReglas)
 iniciar.addEventListener("click", () => partido.iniciarPartida())
 repartir.addEventListener("click", () => partido.mostrarCartas())
 puntuar.addEventListener("click", () => partido.compararValores())
 cerrar.addEventListener("click", () => {
-    partido.cerrarMano();
-    if (partido.manos_jugadas > 2) {
+    if (partido.manosJugadas > 2) { //2 porque suma al final de la mano
         partido.terminarPartida()
-    } else {setTimeout(partido.iniciarPartida,8000)}
-    })
-reglas.addEventListener("click", mostrarReglas)
-
+    } else {
+        partido.cerrarMano();
+        setTimeout(partido.iniciarPartida,3000)}
+})
