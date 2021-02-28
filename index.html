@@ -8,23 +8,26 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="contenedorCartasJugador" class="contenedorCartas">        
+    <div id="contenedorCartasHumano" class="contenedorCartas">        
     </div>
 
     <div class="botonera">
-        <button id="repartir">Iniciar partido</button>
-        <button id="puntuar">Comparar puntaje</button>
-        <input id="status" value="Estado del juego" readonly>
-        <button id="cerrar">Mostrar cartas y cerrar</button>
+        <button id="iniciar">Iniciar partido</button>
+        <button id="repartir" disabled>Repartir mano</button>
+        <button id="puntuar" disabled>Comparar puntaje</button>
+        <button id="cerrar" disabled>Mostrar cartas y cerrar</button>
+        <textarea class="displayStatus" id="status" cols="25" rows="6" readonly>Estado del juego</textarea>
         <button id="reglas">Mostrar Reglas</button>
     </div>
 
-    <div id="contenedorCartasPC" class="contenedorCartas oculto"> 
+    <div id="contenedorCartasPC"> 
+    </div>
+    <div id="contenedorReverso" class="contenedorCartas oculto">
         <img src="./images/reverso.png" alt="reverso de carta">       
         <img src="./images/reverso.png" alt="reverso de carta">       
         <img src="./images/reverso.png" alt="reverso de carta">       
         <img src="./images/reverso.png" alt="reverso de carta">       
-        <img src="./images/reverso.png" alt="reverso de carta">       
+        <img src="./images/reverso.png" alt="reverso de carta">
     </div>
 
     <script src="./scripts/classes.js"></script>

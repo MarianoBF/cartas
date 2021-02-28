@@ -21,13 +21,24 @@ body {
     cursor: pointer;
 }
 
+.botonera button:disabled {
+    background: lightsalmon;
+    color: slategray;
+}
+
 .oculto {
     display: none;
 }
 
-input {
-    height: 100px;
+.displayStatus {
     text-align: center;
+    background: white;
     color: black;
     cursor:default;
+    resize: none;
+}
+
+.oscuro {
+    color: white;
+    background: black;
 }
