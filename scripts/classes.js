@@ -31,6 +31,14 @@ class Jugador {
         this.esHumano ? dibujarCartas(this.mano) : null;
     }
 
+    get NombrePuntos() {
+        return this.nombre + this.puntos
+    }
+
+    set NombrePuntos(cambio) {
+        [this.nombre, this.puntos] = cambio.split(" ")
+    }
+
     calcularPuntos() {
          this.puntaje_mano = sumarPuntos(this.mano)
          this.puntos += this.puntaje_mano;
@@ -100,6 +108,7 @@ class Partido {
         statusJuego.innerText = resultado;
         puntuar.disabled = true;
         cerrar.disabled = false;
+        console.log("Mano " + (+this.manosJugadas + 1) + " " + resultado)
 
         setTimeout(() => {
             if (jugador.consultarPuntajeMano() > jugador2.consultarPuntajeMano()) 
@@ -135,9 +144,11 @@ class Partido {
         let puntosPerdedor;
         
         jugador.consultarPuntos() > jugador2.consultarPuntos() ? (jugadorGanador = jugador.consultarNombre()) && (puntosGanador = jugador.consultarPuntos()) && (jugadorPerdedor = jugador2.consultarNombre()) && (puntosPerdedor = jugador2.consultarPuntos()) : (jugadorGanador = jugador2.consultarNombre()) && (puntosGanador = jugador2.consultarPuntos()) && (jugadorPerdedor = jugador.consultarNombre()) && (puntosPerdedor = jugador.consultarPuntos());
-        setTimeout(()=>alert(`El ganador de la partida es ${jugadorGanador} con ${puntosGanador} contra ${puntosPerdedor} del perdedor ${jugadorPerdedor}, ¿quién ganó más manos?`),2000)
+        setTimeout(()=>{
+            alert(`El ganador de la partida es ${jugadorGanador} con ${puntosGanador} contra ${puntosPerdedor} del perdedor ${jugadorPerdedor}`)
+            location.reload()}
+            ,2000)
  
-        //location.reload()
-
+    
     }
 }
