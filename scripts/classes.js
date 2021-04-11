@@ -15,12 +15,15 @@ class Jugador {
     puntos;
     puntaje_mano;
     esHumano;
-    manosGanadas;//?
+    manosGanadas;
+    manosEmpatadas;
     
     constructor(nombre, esHumano) {
         this.nombre = nombre;
         this.puntos = 0;
         this.esHumano = esHumano;
+        this.manosGanadas = 0;
+        this.manosEmpatadas = 0;
     }
 
     recibirCartas() {
@@ -89,8 +92,7 @@ class Partido {
     }
 
     mostrarCartas() {
-        //sin el forEach
-        jugador.mostrarCartas()
+        jugador1.mostrarCartas()
         jugador2.mostrarCartas()
         contenedorReverso.classList.toggle("oculto")
         statusJuego.innerText = "Cartas en la mesa"
@@ -110,10 +112,12 @@ class Partido {
         cerrar.disabled = false;
         console.log("Mano " + (+this.manosJugadas + 1) + " " + resultado)
 
+        jugador1.consultarPuntajeMano()> jugador2.consultarPuntajeMano() ? jugador1.manosGanadas++ : jugador2.consultarPuntajeMano()> jugador1.consultarPuntajeMano() ? jugador2.manosGanadas++ : jugador1.manosEmpatadas++ && jugador2.manosEmpatadas++
+
         setTimeout(() => {
-            if (jugador.consultarPuntajeMano() > jugador2.consultarPuntajeMano()) 
-                {alert("Esta mano la ganó " + jugador.nombre)
-            } else if ((jugador2.consultarPuntajeMano() > jugador.consultarPuntajeMano())) {
+            if (jugador1.consultarPuntajeMano() > jugador2.consultarPuntajeMano()) 
+                {alert("Esta mano la ganó " + jugador1.nombre)
+            } else if ((jugador2.consultarPuntajeMano() > jugador1.consultarPuntajeMano())) {
                     alert("Esta mano la ganó " + jugador2.nombre)
             } else {alert("Empate")}
         }, 500)
@@ -125,7 +129,7 @@ class Partido {
             jugador.mostrarCartasPC()
         })
         statusJuego.innerText += "Preparando siguiente mano..."
-        jugador.limpiar()
+        jugador1.limpiar()
         cerrar.disabled = true;
         this.manosJugadas++;
     }
@@ -138,16 +142,16 @@ class Partido {
         statusJuego.innerText += "Partido finalizado"
 
 
-        let jugadorGanador;
-        let jugadorPerdedor;
-        let puntosGanador;
-        let puntosPerdedor;
-        
-        jugador.consultarPuntos() > jugador2.consultarPuntos() ? (jugadorGanador = jugador.consultarNombre()) && (puntosGanador = jugador.consultarPuntos()) && (jugadorPerdedor = jugador2.consultarNombre()) && (puntosPerdedor = jugador2.consultarPuntos()) : (jugadorGanador = jugador2.consultarNombre()) && (puntosGanador = jugador2.consultarPuntos()) && (jugadorPerdedor = jugador.consultarNombre()) && (puntosPerdedor = jugador.consultarPuntos());
-        setTimeout(()=>{
-            alert(`El ganador de la partida es ${jugadorGanador} con ${puntosGanador} contra ${puntosPerdedor} del perdedor ${jugadorPerdedor}`)
-            location.reload()}
-            ,2000)
+        let jugadorGanador = jugador1.manosGanadas > jugador2.manosGanadas ? jugador1.nombre : jugador2.manosGanadas > jugador1.manosGanadas ? jugador2.nombre : "Empate"
+
+
+        let mensaje = `El jugador Humano ganó ${jugador1.manosGanadas}, y el jugador PC ${jugador2.manosGanadas}. `
+        if (jugador1.manosEmpatadas>=0) {mensaje = mensaje + `Además, empataron ${jugador1.manosEmpatadas} manos. `
+    } else { mensaje = mensaje + "No hubo manos empatadas. "}
+
+        jugadorGanador === "Empate" ? mensaje = mensaje + "No ganó nadie, perdieron los dos" : mensaje = mensaje + `El jugador ganador fue ${jugadorGanador}`
+
+        alert(mensaje)
  
     
     }

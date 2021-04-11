@@ -39,5 +39,5 @@ function sumarPuntos(mano) {
 
 function mostrarReglas() {
     alert("Se suman los puntajes de cada carta numérica, las figuras (J,Q,K) suman 10 puntos y el As 15 puntos.\n"
-    +"El mayor puntaje gana la mano, y el que suma más puntos totales en cuatro manos gana el partido.")
+    +"El mejor de 5 manos, gana")
 }

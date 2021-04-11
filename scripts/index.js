@@ -1,9 +1,9 @@
 let mazo;
 let preMazo = traerMazoEntero().then(data => mazo = new Mazo (data));
 
-let jugador = new Jugador("Humano", true)
+let jugador1 = new Jugador("Humano", true)
 let jugador2 = new Jugador("PC", false)
-let jugadores = [jugador, jugador2]
+let jugadores = [jugador1, jugador2]
 
 let partido = new Partido()
 
@@ -24,7 +24,7 @@ iniciar.addEventListener("click", () => partido.iniciarPartida())
 repartir.addEventListener("click", () => partido.mostrarCartas())
 puntuar.addEventListener("click", () => partido.compararValores())
 cerrar.addEventListener("click", () => {
-    if (partido.manosJugadas > 2) { //2 porque suma al final de la mano
+    if (partido.manosJugadas > 3) { //2 porque suma al final de la mano
         partido.terminarPartida()
     } else {
         partido.cerrarMano();
