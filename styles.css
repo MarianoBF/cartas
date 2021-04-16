@@ -1,10 +1,15 @@
 body {
     background: green;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
 }
 
 .contenedorCartas, .botonera {
     max-width: 90vw;
     margin: 2vh auto;
+    flex-basis: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -12,6 +17,7 @@ body {
 
 .contenedorCartas img {
     max-width: 15vw;
+    max-height: 35vh;
 }
 
 .botonera button {
