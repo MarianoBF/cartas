@@ -3,7 +3,7 @@ describe("Inicio", () => {
     cy.visit("localhost:5500");
   });
 
-  it("Encuentra botonera e inicia", () => {
+  it("Encuentra botonera y juega un partido (tres manos)", () => {
     
     cy.get(".botonera").should("be.visible");
     cy.get(".botonera").contains("Iniciar partido").wait(1500).click();
