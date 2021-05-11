@@ -39,7 +39,7 @@ function dibujarCartasPC(cartas) {
   cartas.forEach(carta => {
     let img = document.createElement("IMG");
     img.src = carta.image;
-    contenedorCartasPC.append(img);
+    contenedorReverso.append(img);
   });
 }
 
