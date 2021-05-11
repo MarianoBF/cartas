@@ -6,7 +6,8 @@ async function traerMazoEntero() {
     );
     mazoAux = await datos.json();
   } catch {
-    console.log("No se puedo traer el mazo");
+    alert("No se puedo traer el mazo. Reiniciando partida y reintentando");
+    window.location.reload()
   }
   return mazoAux;
 }
@@ -19,7 +20,9 @@ async function traerCartasMano() {
     );
     cartas = await datos.json();
   } catch {
-    console.log("No se pudieron recuperar las cartas");
+    //TODO: Retries??
+    alert("No se pudieron traer las cartas, hubo un problema en el servidor. Reiniciando la partida...");
+    window.location.reload()
   }
   return cartas.cards;
 }
