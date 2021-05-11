@@ -81,7 +81,7 @@ class Partido {
   }
 
   iniciarPartida() {
-    contenedorCartasPC.innerHTML = "";
+    // contenedorCartasPC.innerHTML = "";
     contenedorCartasHumano.innerHTML = "";
     jugador1.recibirCartas();
     jugador2.recibirCartas();

@@ -13,11 +13,12 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    height: 25vh;
 }
 
 .contenedorCartas img {
     max-width: 15vw;
-    max-height: 35vh;
+    max-height: 25vh;
 }
 
 .botonera button {
