@@ -127,6 +127,8 @@ class Partido {
       jugador2.consultarPuntajeMano() +
       ganador;
     statusJuego.innerText = resultado;
+    //TODO: adapt plurals
+    resultadoJuego.innerText = "Resultado parcial: jugador humano ganó " + jugador1.manosGanadas + " manos, el jugador pc ganó " + jugador2.manosGanadas + " manos."
     puntuar.disabled = true;
     cerrar.disabled = false;
     console.log("Mano " + (+this.manosJugadas + 1) + " " + resultado);
@@ -149,12 +151,15 @@ class Partido {
 
     let jugadorGanador =
       jugador1.manosGanadas > jugador2.manosGanadas
-        ? jugador1.nombre
+        ? {nombre:jugador1.nombre, manos:jugador1.manosGanadas}
         : jugador2.manosGanadas > jugador1.manosGanadas
-        ? jugador2.nombre
+        ? {nombre:jugador2.nombre, manos:jugador2.manosGanadas}
         : "Empate";
 
     let mensaje = `El jugador Humano ganó ${jugador1.manosGanadas}, y el jugador PC ${jugador2.manosGanadas}. `;
+    //TODO: handle empate
+    resultadoJuego.innerText = "El ganador del partido fue " + jugadorGanador.nombre + " con " + jugadorGanador.manos + " manos ganadas";
+
     if (jugador1.manosEmpatadas >= 0) {
       mensaje =
         mensaje + `Además, empataron ${jugador1.manosEmpatadas} manos. `;
@@ -164,7 +169,7 @@ class Partido {
 
     jugadorGanador === "Empate"
       ? (mensaje = mensaje + "No ganó nadie, perdieron los dos")
-      : (mensaje = mensaje + `El jugador ganador fue ${jugadorGanador}`);
+      : (mensaje = mensaje + `El jugador ganador fue ${jugadorGanador.nombre}`);
 
     alert(mensaje);
 

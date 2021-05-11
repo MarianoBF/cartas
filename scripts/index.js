@@ -16,6 +16,7 @@ let puntuar = document.getElementById("puntuar");
 let cerrar = document.getElementById("cerrar");
 let reglas = document.getElementById("reglas");
 let statusJuego = document.getElementById("status");
+let resultadoJuego = document.getElementById("results");
 
 //Event listeners
 reglas.addEventListener("click", mostrarReglas);
