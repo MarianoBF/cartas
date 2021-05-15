@@ -1,7 +1,7 @@
 class Mazo {
   constructor(mazo) {
-    this.id = mazo.deck_id
-    this.cantidadCartas = mazo.remaining
+    this.id = mazo.deck_id;
+    this.cantidadCartas = mazo.remaining;
   }
 
   consultarId() {
@@ -127,8 +127,13 @@ class Partido {
       jugador2.consultarPuntajeMano() +
       ganador;
     statusJuego.innerText = resultado;
-    //TODO: adapt plurals
-    resultadoJuego.innerText = "Resultado parcial: jugador humano ganó " + jugador1.manosGanadas + " manos, el jugador pc ganó " + jugador2.manosGanadas + " manos."
+    resultadoJuego.innerText =
+      "Humano ganó " +
+      jugador1.manosGanadas +
+      (jugador1.manosGanadas === 1 ? " mano " : " manos") +
+      "\n\n PC ganó " +
+      jugador2.manosGanadas +
+      (jugador2.manosGanadas === 1 ? " mano " : " manos");
     puntuar.disabled = true;
     cerrar.disabled = false;
     console.log("Mano " + (+this.manosJugadas + 1) + " " + resultado);
@@ -151,14 +156,19 @@ class Partido {
 
     let jugadorGanador =
       jugador1.manosGanadas > jugador2.manosGanadas
-        ? {nombre:jugador1.nombre, manos:jugador1.manosGanadas}
+        ? {nombre: jugador1.nombre, manos: jugador1.manosGanadas}
         : jugador2.manosGanadas > jugador1.manosGanadas
-        ? {nombre:jugador2.nombre, manos:jugador2.manosGanadas}
+        ? {nombre: jugador2.nombre, manos: jugador2.manosGanadas}
         : "Empate";
 
     let mensaje = `El jugador Humano ganó ${jugador1.manosGanadas}, y el jugador PC ${jugador2.manosGanadas}. `;
     //TODO: handle empate
-    resultadoJuego.innerText = "El ganador del partido fue " + jugadorGanador.nombre + " con " + jugadorGanador.manos + " manos ganadas";
+    resultadoJuego.innerText =
+      "El ganador del partido fue " +
+      jugadorGanador.nombre +
+      " con " +
+      jugadorGanador.manos +
+      " manos ganadas";
 
     if (jugador1.manosEmpatadas >= 0) {
       mensaje =
@@ -173,6 +183,6 @@ class Partido {
 
     alert(mensaje);
 
-    setTimeout(()=>window.location.reload(), 5000)
+    setTimeout(() => window.location.reload(), 5000);
   }
 }
