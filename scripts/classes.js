@@ -26,7 +26,7 @@ class Jugador {
     this.manosEmpatadas = 0;
   }
 
-  recibirCartas() {
+  recibirCartas() { 
     traerCartasMano().then(mano => {
       this.mano = mano;
     });
@@ -49,8 +49,12 @@ class Jugador {
     this.puntos += this.puntaje_mano;
   }
 
+  mostrarCartasPCTapadas() {
+    dibujarCartasPC(cartasReverso);
+  }
+
   mostrarCartasPC() {
-    !this.esHumano ? dibujarCartasPC(this.mano) : null;
+    dibujarCartasPC(this.mano);
   }
 
   limpiar() {
@@ -81,7 +85,7 @@ class Partido {
   }
 
   iniciarPartida() {
-    // contenedorCartasPC.innerHTML = "";
+    contenedorReverso.innerHTML = "";
     contenedorCartasHumano.innerHTML = "";
     jugador1.recibirCartas();
     jugador2.recibirCartas();
@@ -92,8 +96,7 @@ class Partido {
 
   mostrarCartas() {
     jugador1.mostrarCartas();
-    jugador2.mostrarCartas();
-    contenedorReverso.classList.toggle("oculto");
+    jugador2.mostrarCartasPCTapadas();
     statusJuego.innerText = " \n Cartas en la mesa";
     repartir.disabled = true;
     puntuar.disabled = false;
@@ -140,7 +143,7 @@ class Partido {
   }
 
   cerrarMano() {
-    contenedorReverso.classList.toggle("oculto");
+    contenedorReverso.innerHTML = "";
     jugador2.mostrarCartasPC();
     statusJuego.innerText += "Preparando siguiente mano...";
     jugador1.limpiar();
@@ -150,7 +153,6 @@ class Partido {
   }
 
   terminarPartida() {
-    contenedorReverso.classList.toggle("oculto");
     jugador2.mostrarCartasPC();
     statusJuego.innerText += "Partido finalizado";
 

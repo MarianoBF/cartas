@@ -1,5 +1,7 @@
 let mazo;
-let preMazo = traerMazoEntero().then(data => (mazo = new Mazo(data))).catch((error)=> console.log(error));
+let preMazo = traerMazoEntero()
+  .then(data => (mazo = new Mazo(data)))
+  .catch(error => console.log(error));
 
 let jugador1 = new Jugador("Humano", true);
 let jugador2 = new Jugador("PC", false);
@@ -7,16 +9,34 @@ let jugador2 = new Jugador("PC", false);
 let partido = new Partido();
 
 //Referencias
-let contenedorReverso = document.getElementById("contenedorReverso");
-let contenedorCartasHumano = document.getElementById("contenedorCartasHumano");
-let contenedorCartasPC = document.getElementById("contenedorCartasPC");
-let iniciar = document.getElementById("iniciar");
-let repartir = document.getElementById("repartir");
-let puntuar = document.getElementById("puntuar");
-let cerrar = document.getElementById("cerrar");
-let reglas = document.getElementById("reglas");
-let statusJuego = document.getElementById("status");
-let resultadoJuego = document.getElementById("results");
+const contenedorReverso = document.getElementById("contenedorReverso");
+const contenedorCartasHumano = document.getElementById(
+  "contenedorCartasHumano"
+);
+const iniciar = document.getElementById("iniciar");
+const repartir = document.getElementById("repartir");
+const puntuar = document.getElementById("puntuar");
+const cerrar = document.getElementById("cerrar");
+const reglas = document.getElementById("reglas");
+const statusJuego = document.getElementById("status");
+const resultadoJuego = document.getElementById("results");
+const cartasReverso = [
+  {
+    image: "../images/reverso.png",
+  },
+  {
+    image: "../images/reverso.png",
+  },
+  {
+    image: "../images/reverso.png",
+  },
+  {
+    image: "../images/reverso.png",
+  },
+  {
+    image: "../images/reverso.png",
+  },
+];
 
 //Event listeners
 reglas.addEventListener("click", mostrarReglas);
