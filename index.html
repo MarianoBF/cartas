@@ -1,40 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Juego de cartas</title>
-</head>
-<body>
-    <div id="contenedorCartasHumano" class="contenedorCartas">        
-    </div>
+  </head>
+  <body>
+    <div id="contenedorCartasHumano" class="contenedorCartas"></div>
 
     <div id="botonera" class="botonera">
-        <button id="iniciar">Iniciar partido</button>
-        <button id="repartir" disabled>Repartir mano</button>
-        <button id="puntuar" disabled>Comparar puntaje</button>
-        <button id="cerrar" disabled>Mostrar cartas y cerrar</button>
-        <textarea class="displayStatus" id="status" cols="25" rows="6" readonly>Estado del juego</textarea>
-        <textarea class="displayStatus" id="results" cols="25" rows="6" readonly>Resultados</textarea>
-        <button id="reglas">Mostrar Reglas</button>
+      <button class="playButton" id="iniciar">Iniciar partido</button>
+      <button class="playButton" id="repartir" disabled>Repartir mano</button>
+      <button class="playButton" id="puntuar" disabled>Comparar puntaje</button>
+      <button class="playButton" id="cerrar" disabled>Mostrar cartas y cerrar</button>
+      <div class="messageContainer">
+        <p>Estado del Juego</p>
+        <textarea
+          class="displayStatus"
+          id="status"
+          cols="25"
+          rows="6"
+          readonly
+        ></textarea>
+      </div>
+      <div class="messageContainer">
+        <p>Resultados</p>
+
+        <textarea
+          class="displayStatus"
+          id="results"
+          cols="25"
+          rows="6"
+          readonly
+        ></textarea>
+      </div>
+      <button id="reglas" class="rulesButton">Mostrar Reglas</button>
     </div>
 
     <!-- <div id="contenedorCartasPC" class="contenedorCartas"> 
     </div> -->
     <div id="contenedorReverso" class="contenedorCartas oculto">
-        <img src="./images/reverso.png" alt="reverso de carta">       
-        <img src="./images/reverso.png" alt="reverso de carta">       
-        <img src="./images/reverso.png" alt="reverso de carta">       
-        <img src="./images/reverso.png" alt="reverso de carta">       
-        <img src="./images/reverso.png" alt="reverso de carta">
+      <img src="./images/reverso.png" alt="reverso de carta" />
+      <img src="./images/reverso.png" alt="reverso de carta" />
+      <img src="./images/reverso.png" alt="reverso de carta" />
+      <img src="./images/reverso.png" alt="reverso de carta" />
+      <img src="./images/reverso.png" alt="reverso de carta" />
     </div>
 
     <script src="./scripts/classes.js"></script>
     <script src="./scripts/functions.js"></script>
     <script src="./scripts/index.js"></script>
-
-</body>
+  </body>
 </html>
