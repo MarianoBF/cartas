@@ -145,11 +145,11 @@ class Partido {
     puntuar.disabled = true;
     cerrar.disabled = false;
     console.log("Mano " + (+this.manosJugadas + 1) + " " + resultado);
+    contenedorReverso.innerHTML = "";
+    jugador2.mostrarCartasPC();
   }
 
   cerrarMano() {
-    contenedorReverso.innerHTML = "";
-    jugador2.mostrarCartasPC();
     statusJuego.innerText += "Preparando siguiente mano...";
     jugador1.limpiar();
     jugador2.limpiar();
