@@ -136,9 +136,12 @@ class Partido {
       "Humano ganó " +
       jugador1.manosGanadas +
       (jugador1.manosGanadas === 1 ? " mano " : " manos") +
-      "\n\n PC ganó " +
+      " \n PC ganó " +
       jugador2.manosGanadas +
-      (jugador2.manosGanadas === 1 ? " mano " : " manos");
+      (jugador2.manosGanadas === 1 ? " mano " : " manos") +
+      " \n Empataron " +
+      jugador2.manosEmpatadas +
+      (jugador2.manosEmpatadas === 1 ? " mano " : " manos");
     puntuar.disabled = true;
     cerrar.disabled = false;
     console.log("Mano " + (+this.manosJugadas + 1) + " " + resultado);
@@ -155,7 +158,7 @@ class Partido {
   }
 
   terminarPartida() {
-    //TODO LIMPIAR paño pc
+    contenedorReverso.innerHTML = "";
     jugador2.mostrarCartasPC();
     statusJuego.innerText += "Partido finalizado";
 
@@ -167,7 +170,7 @@ class Partido {
         : "Empate";
 
     let mensaje = `El jugador Humano ganó ${jugador1.manosGanadas}, y el jugador PC ${jugador2.manosGanadas}. `;
-    //TODO: handle empate
+
     resultadoJuego.innerText =
       "El ganador del partido fue " +
       jugadorGanador.nombre +
@@ -175,7 +178,7 @@ class Partido {
       jugadorGanador.manos +
       " manos ganadas";
 
-    if (jugador1.manosEmpatadas >= 0) {
+    if (jugador1.manosEmpatadas > 0) {
       mensaje =
         mensaje + `Además, empataron ${jugador1.manosEmpatadas} manos. `;
     } else {
@@ -186,7 +189,7 @@ class Partido {
       ? (mensaje = mensaje + "No ganó nadie, perdieron los dos")
       : (mensaje = mensaje + `El jugador ganador fue ${jugadorGanador.nombre}`);
 
-    alert(mensaje);
+      resultadoJuego.innertext = mensaje;
 
     setTimeout(() => window.location.reload(), 5000);
   }
