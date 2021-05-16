@@ -78,10 +78,12 @@ class Jugador {
 class Partido {
   id;
   manosJugadas;
+  errores;
 
   constructor() {
     this.id = new Date();
     this.manosJugadas = 0;
+    this.errores = 0;
   }
 
   iniciarPartida() {
@@ -153,6 +155,7 @@ class Partido {
   }
 
   terminarPartida() {
+    //TODO LIMPIAR paño pc
     jugador2.mostrarCartasPC();
     statusJuego.innerText += "Partido finalizado";
 
