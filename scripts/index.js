@@ -19,9 +19,13 @@ const puntuar = document.getElementById("puntuar");
 const cerrar = document.getElementById("cerrar");
 const reglas = document.getElementById("reglas");
 const statusJuego = document.getElementById("status");
-const humanCounter = document.getElementById("humanCounter");
-const pcCounter = document.getElementById("pcCounter");
-const tieCounter = document.getElementById("tieCounter");
+const humanRoundCounter = document.getElementById("humanRoundCounter");
+const pcRoundCounter = document.getElementById("pcRoundCounter");
+const tiedRoundCounter = document.getElementById("tiedRoundCounter");
+const humanMatchCounter = document.getElementById("humanMatchCounter");
+const pcMatchCounter = document.getElementById("pcMatchCounter");
+const tiedMatchCounter = document.getElementById("tiedMatchCounter");
+
 const cartasReverso = [
   {
     image: "../images/reverso.png",
