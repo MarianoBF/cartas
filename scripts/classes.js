@@ -132,16 +132,10 @@ class Partido {
       jugador2.consultarPuntajeMano() +
       ganador;
     statusJuego.innerText = resultado;
-    resultadoJuego.innerText =
-      "Humano ganó " +
-      jugador1.manosGanadas +
-      (jugador1.manosGanadas === 1 ? " mano " : " manos") +
-      " \n PC ganó " +
-      jugador2.manosGanadas +
-      (jugador2.manosGanadas === 1 ? " mano " : " manos") +
-      " \n Empataron " +
-      jugador2.manosEmpatadas +
-      (jugador2.manosEmpatadas === 1 ? " mano " : " manos");
+    humanCounter.value = jugador1.manosGanadas;
+    pcCounter.value = jugador2.manosGanadas;
+    tieCounter.value = jugador1.manosEmpatadas;
+
     puntuar.disabled = true;
     cerrar.disabled = false;
     console.log("Mano " + (+this.manosJugadas + 1) + " " + resultado);
@@ -171,7 +165,7 @@ class Partido {
 
     let mensaje = `El jugador Humano ganó ${jugador1.manosGanadas}, y el jugador PC ${jugador2.manosGanadas}. `;
 
-    resultadoJuego.innerText =
+    statusJuego.innerText =
       "El ganador del partido fue " +
       jugadorGanador.nombre +
       " con " +
@@ -189,7 +183,7 @@ class Partido {
       ? (mensaje = mensaje + "No ganó nadie, perdieron los dos")
       : (mensaje = mensaje + `El jugador ganador fue ${jugadorGanador.nombre}`);
 
-      resultadoJuego.innertext = mensaje;
+      statusJuego.innertext = mensaje;
 
     setTimeout(() => window.location.reload(), 5000);
   }

@@ -72,14 +72,21 @@ body {
     line-height: 1.5em;
 }
 
-.messageContainer p {
+.messageContainer h2 {
     margin: 0;
 }
 
 .messageContainer label {
-    margin-right: auto;
     font-size: 1em;
+    width: 100%;
     display: flex;
+    align-items: center;
+}
+
+.messageContainer label input {
+    height: 1em;
+    width: 1em;
+    margin-left: auto;
 }
 
 .counter {

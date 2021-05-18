@@ -19,7 +19,9 @@ const puntuar = document.getElementById("puntuar");
 const cerrar = document.getElementById("cerrar");
 const reglas = document.getElementById("reglas");
 const statusJuego = document.getElementById("status");
-const resultadoJuego = document.getElementById("results");
+const humanCounter = document.getElementById("humanCounter");
+const pcCounter = document.getElementById("pcCounter");
+const tieCounter = document.getElementById("tieCounter");
 const cartasReverso = [
   {
     image: "../images/reverso.png",
