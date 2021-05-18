@@ -117,9 +117,7 @@ class Partido {
     let ganador = "";
     jugadorHumano.calcularPuntos();
     jugadorPC.calcularPuntos();
-    if (
-      jugadorHumano.consultarPuntajeMano() > jugadorPC.consultarPuntajeMano()
-    ) {
+    if (jugadorHumano.consultarPuntajeMano() > jugadorPC.consultarPuntajeMano()) {
       ganador = jugadorHumano.consultarNombre();
       jugadorHumano.manosGanadas++;
     } else if (
