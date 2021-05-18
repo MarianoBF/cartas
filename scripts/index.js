@@ -3,8 +3,8 @@ let preMazo = traerMazoEntero()
   .then(data => (mazo = new Mazo(data)))
   .catch(error => console.log(error));
 
-let jugador1 = new Jugador("Humano", true);
-let jugador2 = new Jugador("PC", false);
+let jugadorHumano = new Jugador("Humano", true);
+let jugadorPC = new Jugador("PC", false);
 
 let partido = new Partido();
 
