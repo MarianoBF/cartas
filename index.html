@@ -14,7 +14,9 @@
     <div id="botonera" class="botonera">
       <button class="playButton" id="iniciar">Iniciar partido</button>
       <button class="playButton" id="repartir" disabled>Repartir mano</button>
-      <button class="playButton" id="puntuar" disabled>Mostrar cartas y comparar puntaje</button>
+      <button class="playButton" id="puntuar" disabled>
+        Mostrar cartas y comparar puntaje
+      </button>
       <button class="playButton" id="cerrar" disabled>Cerrar mano</button>
       <div class="messageContainer">
         <p>Estado del Juego</p>
@@ -27,36 +29,23 @@
         ></textarea>
       </div>
       <div class="messageContainer">
-        <p>Resultados</p>
-        <label>Humano
-        <input
-        class="counter"
-        id="Humano"
-        type="text"
-        readonly
-        ></input>
+        <h2>Resultados</h2>
+        <label
+          >Humano
+          <input class="counter" id="HumanCounter" type="text" readonly />
         </label>
-        <label>PC
-          <input
-          class="counter"
-          id="Humano"
-          type="text"
-          readonly
-          ></input>
-          </label>
-          <label>Empates
-            <input
-            class="counter"
-            id="Humano"
-            type="text"
-            readonly
-            ></input>
-            </label>
+        <label
+          >PC
+          <input class="counter" id="PCCounter" type="text" readonly />
+        </label>
+        <label
+          >Empates
+          <input class="counter" id="TieCounter" type="text" readonly />
+        </label>
       </div>
       <button id="reglas" class="rulesButton">Mostrar Reglas</button>
     </div>
-    <div id="contenedorReverso" class="contenedorCartas">
-    </div>
+    <div id="contenedorReverso" class="contenedorCartas"></div>
 
     <script src="./scripts/classes.js"></script>
     <script src="./scripts/functions.js"></script>

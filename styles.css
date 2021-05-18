@@ -76,6 +76,17 @@ body {
     margin: 0;
 }
 
+.messageContainer label {
+    margin-right: auto;
+    font-size: 1em;
+    display: flex;
+}
+
+.counter {
+    width: 2vw;
+    justify-self: flex-end;
+}
+
 .rulesButton {
     height: 50%;
     width: 8vw;
