@@ -1,12 +1,15 @@
-let mazo;
-let preMazo = traerMazoEntero()
-  .then(data => (mazo = new Mazo(data)))
-  .catch(error => console.log(error));
-
 let jugadorHumano = new Jugador("Humano", true);
 let jugadorPC = new Jugador("PC", false);
-
 let partido = new Partido();
+let mazo;
+
+function startMatch(){
+  traerMazoEntero()
+    .then(data => (mazo = new Mazo(data)))
+    .catch(error => console.log(error));
+}
+
+startMatch()
 
 //Referencias
 const contenedorReverso = document.getElementById("contenedorReverso");
@@ -46,15 +49,16 @@ const cartasReverso = [
 
 //Event listeners
 reglas.addEventListener("click", mostrarReglas);
-iniciar.addEventListener("click", () => partido.iniciarPartida());
+iniciar.addEventListener("click", () => partido.iniciarMano());
 repartir.addEventListener("click", () => partido.mostrarCartas());
 puntuar.addEventListener("click", () => partido.compararValores());
 cerrar.addEventListener("click", () => {
   if (partido.manosJugadas > 1) {
     //1 porque suma al final de la mano
     partido.terminarPartida();
+    startMatch();
   } else {
     partido.cerrarMano();
-    setTimeout(partido.iniciarPartida, 3000);
+    setTimeout(partido.iniciarMano, 1000);
   }
 });

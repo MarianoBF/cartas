@@ -90,7 +90,8 @@ class Partido {
     this.errores = 0;
   }
 
-  iniciarPartida() {
+  iniciarMano() {
+
     contenedorReverso.innerHTML = "";
     contenedorCartasHumano.innerHTML = "";
     jugadorHumano.recibirCartas();
@@ -101,9 +102,6 @@ class Partido {
     humanRoundCounter.value = 0;
     pcRoundCounter.value = 0;
     tiedRoundCounter.value = 0;
-    humanMatchCounter.value = 0;
-    pcMatchCounter.value = 0;
-    tiedMatchCounter.value = 0;
   }
 
   mostrarCartas() {
@@ -211,6 +209,5 @@ class Partido {
       : (mensaje = mensaje + `El jugador ganador fue ${jugadorGanador.nombre}`);
 
     statusJuego.innertext = mensaje;
-
   }
 }
