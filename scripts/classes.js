@@ -99,9 +99,6 @@ class Partido {
     statusJuego.innerText = "Listo para repartir";
     iniciar.disabled = true;
     repartir.disabled = false;
-    humanRoundCounter.value = 0;
-    pcRoundCounter.value = 0;
-    tiedRoundCounter.value = 0;
   }
 
   mostrarCartas() {
@@ -207,5 +204,15 @@ class Partido {
       : (mensaje = mensaje + `El jugador ganador fue ${jugadorGanador.nombre}`);
 
     statusJuego.innertext = mensaje;
+    cerrar.disabled = true;
+    iniciar.disabled = false;
+    jugadorPC.manosGanadas = 0;
+    jugadorHumano.manosGanadas = 0;
+    jugadorPC.manosEmpatadas = 0;
+    jugadorHumano.manosEmpatadas = 0;
+    partido.manosJugadas = 0;
+    humanRoundCounter.value = 0;
+    pcRoundCounter.value = 0;
+    tiedRoundCounter.value = 0;
   }
 }
