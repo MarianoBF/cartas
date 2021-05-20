@@ -17,6 +17,8 @@ class Jugador {
   esHumano;
   manosGanadas;
   manosEmpatadas;
+  partidosGanados;
+  partidosEmpatados;
 
   constructor(nombre, esHumano) {
     this.nombre = nombre;
@@ -24,9 +26,11 @@ class Jugador {
     this.esHumano = esHumano;
     this.manosGanadas = 0;
     this.manosEmpatadas = 0;
+    this.partidosGanados = 0;
+    this.partidosEmpatados = 0;
   }
 
-  recibirCartas() { 
+  recibirCartas() {
     traerCartasMano().then(mano => {
       this.mano = mano;
     });
@@ -86,19 +90,20 @@ class Partido {
     this.errores = 0;
   }
 
-  iniciarPartida() {
+  iniciarMano() {
+
     contenedorReverso.innerHTML = "";
     contenedorCartasHumano.innerHTML = "";
-    jugador1.recibirCartas();
-    jugador2.recibirCartas();
+    jugadorHumano.recibirCartas();
+    jugadorPC.recibirCartas();
     statusJuego.innerText = "Listo para repartir";
     iniciar.disabled = true;
     repartir.disabled = false;
   }
 
   mostrarCartas() {
-    jugador1.mostrarCartas();
-    jugador2.mostrarCartasPCTapadas();
+    jugadorHumano.mostrarCartas();
+    jugadorPC.mostrarCartasPCTapadas();
     statusJuego.innerText = " \n Cartas en la mesa";
     repartir.disabled = true;
     puntuar.disabled = false;
@@ -107,19 +112,19 @@ class Partido {
   compararValores() {
     let resultado = "";
     let ganador = "";
-    jugador1.calcularPuntos();
-    jugador2.calcularPuntos();
-    if (jugador1.consultarPuntajeMano() > jugador2.consultarPuntajeMano()) {
-      ganador = jugador1.consultarNombre();
-      jugador1.manosGanadas++;
+    jugadorHumano.calcularPuntos();
+    jugadorPC.calcularPuntos();
+    if (jugadorHumano.consultarPuntajeMano() > jugadorPC.consultarPuntajeMano()) {
+      ganador = jugadorHumano.consultarNombre();
+      jugadorHumano.manosGanadas++;
     } else if (
-      jugador2.consultarPuntajeMano() > jugador1.consultarPuntajeMano()
+      jugadorPC.consultarPuntajeMano() > jugadorHumano.consultarPuntajeMano()
     ) {
-      jugador2.manosGanadas++;
-      ganador = jugador2.consultarNombre();
+      jugadorPC.manosGanadas++;
+      ganador = jugadorPC.consultarNombre();
     } else {
-      jugador1.manosEmpatadas++;
-      jugador2.manosEmpatadas++;
+      jugadorHumano.manosEmpatadas++;
+      jugadorPC.manosEmpatadas++;
       ganador = "Empate";
     }
     ganador === "Empate"
@@ -127,43 +132,54 @@ class Partido {
       : (ganador = "\n El ganador es " + ganador);
     resultado =
       " \n El puntaje del jugador Humano es " +
-      jugador1.consultarPuntajeMano() +
+      jugadorHumano.consultarPuntajeMano() +
       " y el del jugador PC es " +
-      jugador2.consultarPuntajeMano() +
+      jugadorPC.consultarPuntajeMano() +
       ganador;
     statusJuego.innerText = resultado;
-    humanCounter.value = jugador1.manosGanadas;
-    pcCounter.value = jugador2.manosGanadas;
-    tieCounter.value = jugador1.manosEmpatadas;
-
+    humanRoundCounter.value = jugadorHumano.manosGanadas;
+    pcRoundCounter.value = jugadorPC.manosGanadas;
+    tiedRoundCounter.value = jugadorHumano.manosEmpatadas;
     puntuar.disabled = true;
     cerrar.disabled = false;
     console.log("Mano " + (+this.manosJugadas + 1) + " " + resultado);
     contenedorReverso.innerHTML = "";
-    jugador2.mostrarCartasPC();
+    jugadorPC.mostrarCartasPC();
   }
 
   cerrarMano() {
     statusJuego.innerText += "Preparando siguiente mano...";
-    jugador1.limpiar();
-    jugador2.limpiar();
+    jugadorHumano.limpiar();
+    jugadorPC.limpiar();
     cerrar.disabled = true;
     this.manosJugadas++;
   }
 
   terminarPartida() {
     contenedorReverso.innerHTML = "";
-    jugador2.mostrarCartasPC();
+    jugadorPC.mostrarCartasPC();
     statusJuego.innerText += "Partido finalizado";
 
-    let jugadorGanador =
-      jugador1.manosGanadas > jugador2.manosGanadas
-        ? {nombre: jugador1.nombre, manos: jugador1.manosGanadas}
-        : jugador2.manosGanadas > jugador1.manosGanadas
-        ? {nombre: jugador2.nombre, manos: jugador2.manosGanadas}
-        : "Empate";
+    let jugadorGanador;
 
-    let mensaje = `El jugador Humano ganó ${jugador1.manosGanadas}, y el jugador PC ${jugador2.manosGanadas}. `;
+    if (jugadorHumano.manosGanadas > jugadorPC.manosGanadas) {
+      jugadorGanador = {
+        nombre: jugadorHumano.nombre,
+        manos: jugadorHumano.manosGanadas,
+      };
+      jugadorHumano.partidosGanados++;
+    } else if (jugadorPC.manosGanadas > jugadorHumano.manosGanadas) {
+      jugadorGanador = {
+        nombre: jugadorPC.nombre,
+        manos: jugadorPC.manosGanadas,
+      };
+      jugadorPC.partidosGanados++;
+    } else {
+      jugadorGanador = "Empate";
+      jugadorHumano.partidosEmpatados++;
+    }
+
+    let mensaje = `El jugador Humano ganó ${jugadorHumano.manosGanadas}, y el jugador PC ${jugadorPC.manosGanadas}. `;
 
     statusJuego.innerText =
       "El ganador del partido fue " +
@@ -172,9 +188,13 @@ class Partido {
       jugadorGanador.manos +
       " manos ganadas";
 
-    if (jugador1.manosEmpatadas > 0) {
+    humanMatchCounter.value = jugadorHumano.partidosGanados;
+    pcMatchCounter.value = jugadorPC.partidosGanados;
+    tiedMatchCounter.value = jugadorHumano.partidosEmpatados;
+
+    if (jugadorHumano.manosEmpatadas > 0) {
       mensaje =
-        mensaje + `Además, empataron ${jugador1.manosEmpatadas} manos. `;
+        mensaje + `Además, empataron ${jugadorHumano.manosEmpatadas} manos. `;
     } else {
       mensaje = mensaje + "No hubo manos empatadas. ";
     }
@@ -183,8 +203,16 @@ class Partido {
       ? (mensaje = mensaje + "No ganó nadie, perdieron los dos")
       : (mensaje = mensaje + `El jugador ganador fue ${jugadorGanador.nombre}`);
 
-      statusJuego.innertext = mensaje;
-
-    setTimeout(() => window.location.reload(), 5000);
+    statusJuego.innertext = mensaje;
+    cerrar.disabled = true;
+    iniciar.disabled = false;
+    jugadorPC.manosGanadas = 0;
+    jugadorHumano.manosGanadas = 0;
+    jugadorPC.manosEmpatadas = 0;
+    jugadorHumano.manosEmpatadas = 0;
+    partido.manosJugadas = 0;
+    humanRoundCounter.value = 0;
+    pcRoundCounter.value = 0;
+    tiedRoundCounter.value = 0;
   }
 }

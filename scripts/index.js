@@ -1,12 +1,15 @@
-let mazo;
-let preMazo = traerMazoEntero()
-  .then(data => (mazo = new Mazo(data)))
-  .catch(error => console.log(error));
-
-let jugador1 = new Jugador("Humano", true);
-let jugador2 = new Jugador("PC", false);
-
+let jugadorHumano = new Jugador("Humano", true);
+let jugadorPC = new Jugador("PC", false);
 let partido = new Partido();
+let mazo;
+
+function startMatch(){
+  traerMazoEntero()
+    .then(data => (mazo = new Mazo(data)))
+    .catch(error => console.log(error));
+}
+
+startMatch()
 
 //Referencias
 const contenedorReverso = document.getElementById("contenedorReverso");
@@ -19,9 +22,13 @@ const puntuar = document.getElementById("puntuar");
 const cerrar = document.getElementById("cerrar");
 const reglas = document.getElementById("reglas");
 const statusJuego = document.getElementById("status");
-const humanCounter = document.getElementById("humanCounter");
-const pcCounter = document.getElementById("pcCounter");
-const tieCounter = document.getElementById("tieCounter");
+const humanRoundCounter = document.getElementById("humanRoundCounter");
+const pcRoundCounter = document.getElementById("pcRoundCounter");
+const tiedRoundCounter = document.getElementById("tiedRoundCounter");
+const humanMatchCounter = document.getElementById("humanMatchCounter");
+const pcMatchCounter = document.getElementById("pcMatchCounter");
+const tiedMatchCounter = document.getElementById("tiedMatchCounter");
+
 const cartasReverso = [
   {
     image: "../images/reverso.png",
@@ -42,15 +49,16 @@ const cartasReverso = [
 
 //Event listeners
 reglas.addEventListener("click", mostrarReglas);
-iniciar.addEventListener("click", () => partido.iniciarPartida());
+iniciar.addEventListener("click", () => partido.iniciarMano());
 repartir.addEventListener("click", () => partido.mostrarCartas());
 puntuar.addEventListener("click", () => partido.compararValores());
 cerrar.addEventListener("click", () => {
   if (partido.manosJugadas > 1) {
     //1 porque suma al final de la mano
     partido.terminarPartida();
+    startMatch();
   } else {
     partido.cerrarMano();
-    setTimeout(partido.iniciarPartida, 3000);
+    setTimeout(partido.iniciarMano, 1000);
   }
 });
