@@ -1,5 +1,12 @@
+/* Paleta
+#008000
+#7B9971
+#F5FBF2
+#F6EDD9 */
+
+
 body {
-    background: green;
+    background: #008000;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -35,12 +42,12 @@ body {
 .playButton {
     width: 8vw;
     height: 50%;
-    background: orange;
+    background: #F5FBF2;
     cursor: pointer;
 }
 
 .playButton:disabled {
-    background: lightsalmon;
+    background: #7B9971;
     color: slategray;
 }
 
@@ -50,23 +57,23 @@ body {
 
 .messageDisplay {
     text-align: center;
-    background: white;
-    color: black;
+    background: #FFF;
+    color: #000;
     cursor:default;
     resize: none;
     width: 14vw;
 }
 
 .oscuro {
-    color: white;
-    background: black;
+    color: #FFF;
+    background: #000;
 }
 
 .messageContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: white;
+    color: #FFF;
     font-weight: 500;
     font-size: 1.5em;
     line-height: 1.5em;
@@ -98,5 +105,5 @@ body {
     height: 50%;
     width: 8vw;
     opacity: 0.75;
-    background: #f3f3f3;
+    background: #F6EDD9;
 }
