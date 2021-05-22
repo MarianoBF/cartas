@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 context('Assertions', () => {
-  beforeEach(() => {
+  before(() => {
     cy.visit('localhost:5500')
   })
 
