@@ -4,6 +4,9 @@
 #F5FBF2
 #F6EDD9 */
 
+* {
+    font-family: 'Luckiest Guy', sans-serif;
+}
 
 body {
     background: #008000;
@@ -81,10 +84,11 @@ body {
 
 .messageContainer h2 {
     margin: 0;
+    font-size: 1em
 }
 
 .messageContainer label {
-    font-size: 1em;
+    font-size: 0.7em;
     width: 100%;
     display: flex;
     align-items: center;

@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap"
+      rel="stylesheet"
+    />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,7 +19,9 @@
     <div id="botonera" class="botonera">
       <button class="playButton" id="iniciar">Iniciar partido</button>
       <button class="playButton" id="repartir" disabled>Repartir mano</button>
-      <button class="playButton" id="puntuar" disabled>Mostrar cartas y puntaje</button>
+      <button class="playButton" id="puntuar" disabled>
+        Mostrar cartas y puntaje
+      </button>
       <button class="playButton" id="cerrar" disabled>Cerrar mano</button>
       <div class="messageContainer">
         <h2>Estado del Juego</h2>
@@ -30,30 +37,66 @@
         <h2>Manos</h2>
         <label
           >Humano
-          <input class="counter" id="humanRoundCounter" type="text" value="0" readonly />
+          <input
+            class="counter"
+            id="humanRoundCounter"
+            type="text"
+            value="0"
+            readonly
+          />
         </label>
         <label
           >PC
-          <input class="counter" id="pcRoundCounter" type="text" value="0" readonly />
+          <input
+            class="counter"
+            id="pcRoundCounter"
+            type="text"
+            value="0"
+            readonly
+          />
         </label>
         <label
           >Empates
-          <input class="counter" id="tiedRoundCounter" type="text" value="0" readonly />
+          <input
+            class="counter"
+            id="tiedRoundCounter"
+            type="text"
+            value="0"
+            readonly
+          />
         </label>
       </div>
       <div class="messageContainer">
         <h2>Partidos</h2>
         <label
           >Humano
-          <input class="counter" id="humanMatchCounter" type="text" value="0" readonly />
+          <input
+            class="counter"
+            id="humanMatchCounter"
+            type="text"
+            value="0"
+            readonly
+          />
         </label>
         <label
           >PC
-          <input class="counter" id="pcMatchCounter" type="text" value="0" readonly />
+          <input
+            class="counter"
+            id="pcMatchCounter"
+            type="text"
+            value="0"
+            readonly
+          />
         </label>
         <label
           >Empates
-          <input class="counter" id="tiedMatchCounter" type="text" value="0" readonly />
+          <input
+            class="counter"
+            id="tiedMatchCounter"
+            type="text"
+            value="0"
+            readonly
+          />
         </label>
       </div>
       <button id="reglas" class="rulesButton">Mostrar Reglas</button>
