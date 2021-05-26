@@ -21,6 +21,7 @@ const repartir = document.getElementById("repartir");
 const puntuar = document.getElementById("puntuar");
 const cerrar = document.getElementById("cerrar");
 const reglas = document.getElementById("reglas");
+const save_load = document.getElementById("save_load");
 const statusJuego = document.getElementById("status");
 const humanRoundCounter = document.getElementById("humanRoundCounter");
 const pcRoundCounter = document.getElementById("pcRoundCounter");
@@ -48,6 +49,7 @@ const cartasReverso = [
 ];
 
 //Event listeners
+save_load.addEventListener("click", () => saverLoader());
 reglas.addEventListener("click", mostrarReglas);
 iniciar.addEventListener("click", () => partido.iniciarMano());
 repartir.addEventListener("click", () => partido.mostrarCartas());

@@ -18,6 +18,7 @@ class Partido {
     statusJuego.innerText = "Listo para repartir";
     iniciar.disabled = true;
     repartir.disabled = false;
+    save_load.disabled = true;
   }
 
   mostrarCartas() {
@@ -64,6 +65,7 @@ class Partido {
     console.log("Mano " + (+this.manosJugadas + 1) + " " + resultado);
     contenedorReverso.innerHTML = "";
     jugadorPC.mostrarCartasPC();
+    save_load.disabled = false;
   }
 
   cerrarMano() {
@@ -72,9 +74,11 @@ class Partido {
     jugadorPC.limpiar();
     cerrar.disabled = true;
     this.manosJugadas++;
+    save_load.disabled = true;
   }
 
   terminarPartida() {
+    save_load.disabled = true;
     contenedorReverso.innerHTML = "";
     jugadorPC.mostrarCartasPC();
     statusJuego.innerText += "Partido finalizado";
