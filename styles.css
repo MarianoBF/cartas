@@ -107,7 +107,7 @@ body {
     justify-self: flex-end;
 }
 
-.rulesButton {
+.auxButton {
     height: 50%;
     width: 8vw;
     opacity: 0.75;

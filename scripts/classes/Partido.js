@@ -19,6 +19,7 @@ class Partido {
     iniciar.disabled = true;
     repartir.disabled = false;
     save_load.disabled = true;
+    save_load.innerText = "Guardar";
   }
 
   mostrarCartas() {

@@ -83,6 +83,7 @@ function saverLoader() {
         tiedMatches: jugadorHumano.partidosEmpatados,
         matchWinsHuman: jugadorHumano.partidosGanados,
         matchWinsPC: jugadorPC.partidosGanados,
+        playedRounds: partido.manosJugadas + 1,
       };
       localStorage.setItem("cartas", JSON.stringify(gameState));
       save_load.innerText = "Cargar";
@@ -92,14 +93,21 @@ function saverLoader() {
   } else {
     try {
       const gameState = JSON.parse(localStorage.getItem("cartas"));
-      console.log(gameState);
       save_load.innerText = "Guardar";
       jugadorHumano.manosEmpatadas = gameState.tiedRounds;
+      tiedRoundCounter.value = gameState.tiedRounds;
       jugadorHumano.manosGanadas = gameState.humanRounds;
+      humanRoundCounter.value = gameState.humanRounds;
       jugadorPC.manosGanadas = gameState.PCRounds;
+      pcRoundCounter.value = gameState.PCRounds;
       jugadorHumano.partidosEmpatados = gameState.tiedMatches;
+      tiedMatchCounter.value = gameState.tiedMatches;
       jugadorHumano.partidosGanados = gameState.matchWinsHuman;
+      humanMatchCounter.value = gameState.matchWinsHuman;
       jugadorPC.partidosGanados = gameState.matchWinsPC;
+      pcMatchCounter.value = gameState.matchWinsPC
+      partido.manosJugadas = gameState.playedRounds;
+
     } catch {
       alert("No se pudo cargar la partida");
     }
