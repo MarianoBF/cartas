@@ -10,7 +10,9 @@ class Partido {
   }
 
   iniciarMano() {
-
+    humanRoundCounter.value = 0;
+    pcRoundCounter.value = 0;
+    tiedRoundCounter.value = 0;
     contenedorReverso.innerHTML = "";
     contenedorCartasHumano.innerHTML = "";
     jugadorHumano.recibirCartas();
@@ -35,7 +37,9 @@ class Partido {
     let ganador = "";
     jugadorHumano.calcularPuntos();
     jugadorPC.calcularPuntos();
-    if (jugadorHumano.consultarPuntajeMano() > jugadorPC.consultarPuntajeMano()) {
+    if (
+      jugadorHumano.consultarPuntajeMano() > jugadorPC.consultarPuntajeMano()
+    ) {
       ganador = jugadorHumano.consultarNombre();
       jugadorHumano.manosGanadas++;
     } else if (
@@ -103,29 +107,29 @@ class Partido {
       jugadorHumano.partidosEmpatados++;
     }
 
-    let mensaje = `El jugador Humano ganó ${jugadorHumano.manosGanadas}, y el jugador PC ${jugadorPC.manosGanadas}. `;
-
-    statusJuego.innerText =
+    let mensaje =
       "El ganador del partido fue " +
       jugadorGanador.nombre +
       " con " +
       jugadorGanador.manos +
-      " manos ganadas";
-
-    humanMatchCounter.value = jugadorHumano.partidosGanados;
-    pcMatchCounter.value = jugadorPC.partidosGanados;
-    tiedMatchCounter.value = jugadorHumano.partidosEmpatados;
+      " manos ganadas. ";
 
     if (jugadorHumano.manosEmpatadas > 0) {
       mensaje =
-        mensaje + `Además, empataron ${jugadorHumano.manosEmpatadas} manos. `;
+        mensaje + `Además, empataron ${jugadorHumano.manosEmpatadas} mano(s). `;
     } else {
       mensaje = mensaje + "No hubo manos empatadas. ";
     }
 
-    jugadorGanador === "Empate"
-      ? (mensaje = mensaje + "No ganó nadie, perdieron los dos")
-      : (mensaje = mensaje + `El jugador ganador fue ${jugadorGanador.nombre}`);
+    if (jugadorGanador === "Empate") {
+      mensaje = mensaje + "No ganó nadie, perdieron los dos";
+    }
+
+    statusJuego.innerText = mensaje;
+
+    humanMatchCounter.value = jugadorHumano.partidosGanados;
+    pcMatchCounter.value = jugadorPC.partidosGanados;
+    tiedMatchCounter.value = jugadorHumano.partidosEmpatados;
 
     statusJuego.innertext = mensaje;
     cerrar.disabled = true;
@@ -135,8 +139,5 @@ class Partido {
     jugadorPC.manosEmpatadas = 0;
     jugadorHumano.manosEmpatadas = 0;
     partido.manosJugadas = 0;
-    humanRoundCounter.value = 0;
-    pcRoundCounter.value = 0;
-    tiedRoundCounter.value = 0;
   }
 }

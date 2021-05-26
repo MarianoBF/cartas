@@ -43,7 +43,7 @@ class Jugador {
   }
 
   mostrarCartasPCTapadas() {
-    drawCards(this.mano, contenedorReverso);
+    drawCards(cartasReverso, contenedorReverso);
   }
 
   mostrarCartasPC() {
