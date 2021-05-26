@@ -18,7 +18,7 @@ async function getHand() {
     let data = await fetch(
       `https://deckofcardsapi.com/api/deck/${id}/draw/?count=5`
     );
-    let cards = await data.json();
+    cards = await data.json();
   } catch {
     if (partido.errores >= 5) {
       alert(
@@ -39,17 +39,9 @@ function drawCards(cartas, container) {
   cartas.forEach(carta => {
     let img = document.createElement("IMG");
     img.src = carta.image;
-    contenedorCartasHumano.append(img);
+    container.append(img);
   });
 }
-
-// function drawPCCards(cartas) {
-//   cartas.forEach(carta => {
-//     let img = document.createElement("IMG");
-//     img.src = carta.image;
-//     contenedorReverso.append(img);
-//   });
-// }
 
 function addScore(hand) {
   let sum = 0;
