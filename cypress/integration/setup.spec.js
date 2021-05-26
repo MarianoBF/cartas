@@ -23,7 +23,7 @@ context('Assertions', () => {
       .should('have.text', 'Cerrar mano')
       .should("be.disabled")
 
-      cy.get('#reglas')
+      cy.get('#rules')
       .should('have.text', 'Mostrar Reglas')
       .should("not.be.disabled")
       .click()

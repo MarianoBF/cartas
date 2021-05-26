@@ -1,24 +1,24 @@
-async function traerMazoEntero() {
-  let mazoAux;
+async function getFullDeck() {
+  let auxDeck;
   try {
-    let datos = await fetch(
+    let data = await fetch(
       "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1"
     );
-    mazoAux = await datos.json();
+    auxDeck = await data.json();
   } catch {
     alert("No se puedo traer el mazo. Reiniciando partida y reintentando");
     window.location.reload();
   }
-  return mazoAux;
+  return auxDeck;
 }
 
-async function traerCartasMano() {
+async function getHand() {
   let id = mazo.consultarId();
   try {
-    let datos = await fetch(
+    let data = await fetch(
       `https://deckofcardsapi.com/api/deck/${id}/draw/?count=5`
     );
-    cartas = await datos.json();
+    let cards = await data.json();
   } catch {
     if (partido.errores >= 5) {
       alert(
@@ -30,12 +30,12 @@ async function traerCartasMano() {
       "No se pudieron traer las cartas, hubo un problema en el servidor. Reintentando..."
     );
     partido.errores++;
-    traerCartasMano();
+    getHand();
   }
-  return cartas.cards;
+  return cards.cards;
 }
 
-function dibujarCartas(cartas) {
+function drawCards(cartas, container) {
   cartas.forEach(carta => {
     let img = document.createElement("IMG");
     img.src = carta.image;
@@ -43,29 +43,29 @@ function dibujarCartas(cartas) {
   });
 }
 
-function dibujarCartasPC(cartas) {
-  cartas.forEach(carta => {
-    let img = document.createElement("IMG");
-    img.src = carta.image;
-    contenedorReverso.append(img);
-  });
-}
+// function drawPCCards(cartas) {
+//   cartas.forEach(carta => {
+//     let img = document.createElement("IMG");
+//     img.src = carta.image;
+//     contenedorReverso.append(img);
+//   });
+// }
 
-function sumarPuntos(mano) {
-  let suma = 0;
-  mano.forEach(element => {
+function addScore(hand) {
+  let sum = 0;
+  hand.forEach(element => {
     element.value === "JACK" ||
     element.value === "QUEEN" ||
     element.value === "KING"
       ? (element.value = 10)
       : null;
     element.value === "ACE" ? (element.value = 15) : null;
-    suma += +element.value;
+    sum += +element.value;
   });
-  return suma;
+  return sum;
 }
 
-function mostrarReglas() {
+function showRules() {
   alert(
     "Se suman los puntajes de cada carta numérica, las figuras (J,Q,K) suman 10 puntos y el As 15 puntos.\n" +
       "El mejor de 3 manos, gana. \n" +

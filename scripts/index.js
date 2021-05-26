@@ -4,7 +4,7 @@ let partido = new Partido();
 let mazo;
 
 function startMatch(){
-  traerMazoEntero()
+  getFullDeck()
     .then(data => (mazo = new Mazo(data)))
     .catch(error => console.log(error));
 }
@@ -20,7 +20,7 @@ const iniciar = document.getElementById("iniciar");
 const repartir = document.getElementById("repartir");
 const puntuar = document.getElementById("puntuar");
 const cerrar = document.getElementById("cerrar");
-const reglas = document.getElementById("reglas");
+const rules = document.getElementById("rules");
 const save_load = document.getElementById("save_load");
 const statusJuego = document.getElementById("status");
 const humanRoundCounter = document.getElementById("humanRoundCounter");
@@ -50,7 +50,7 @@ const cartasReverso = [
 
 //Event listeners
 save_load.addEventListener("click", () => saverLoader());
-reglas.addEventListener("click", mostrarReglas);
+rules.addEventListener("click", showRules);
 iniciar.addEventListener("click", () => partido.iniciarMano());
 repartir.addEventListener("click", () => partido.mostrarCartas());
 puntuar.addEventListener("click", () => partido.compararValores());

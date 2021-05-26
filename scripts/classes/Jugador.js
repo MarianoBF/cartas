@@ -20,7 +20,7 @@ class Jugador {
     }
   
     recibirCartas() {
-      traerCartasMano().then(mano => {
+      getHand().then(mano => {
         this.mano = mano;
       });
     }
@@ -38,7 +38,7 @@ class Jugador {
     }
   
     calcularPuntos() {
-      this.puntaje_mano = sumarPuntos(this.mano);
+      this.puntaje_mano = addScore(this.mano);
       this.puntos += this.puntaje_mano;
     }
   
