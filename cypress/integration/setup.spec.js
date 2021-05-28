@@ -8,7 +8,7 @@ context('Assertions', () => {
   describe('buttonss', () => {
     it('Ajustar', () => {
       cy.get('#start')
-      .should('have.text', 'Iniciar partido')
+      .should('have.text', 'Iniciar nuevo partido')
       .should("not.be.disabled")
 
       cy.get('#deal')

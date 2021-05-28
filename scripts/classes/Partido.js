@@ -18,7 +18,7 @@ class Partido {
     jugadorHumano.recibirCartas();
     jugadorPC.recibirCartas();
     statusJuego.innerText = "Listo para repartir";
-    iniciar.disabled = true;
+    start.disabled = true;
     deal.disabled = false;
     save_load.disabled = true;
     save_load.innerText = "Guardar";
@@ -74,7 +74,7 @@ class Partido {
   }
 
   cerrarMano() {
-    statusJuego.innerText += "Preparando siguiente mano...";
+    statusJuego.innerText = "Preparando siguiente mano...";
     jugadorHumano.limpiar();
     jugadorPC.limpiar();
     close.disabled = true;
@@ -116,9 +116,9 @@ class Partido {
 
     if (jugadorHumano.manosEmpatadas > 0) {
       mensaje =
-        mensaje + `Además, empataron ${jugadorHumano.manosEmpatadas} mano(s). `;
+        mensaje + `\n Además, empataron ${jugadorHumano.manosEmpatadas} mano(s). `;
     } else {
-      mensaje = mensaje + "No hubo manos empatadas. ";
+      mensaje = mensaje + "\n No hubo manos empatadas. ";
     }
 
     if (jugadorGanador === "Empate") {
@@ -133,7 +133,7 @@ class Partido {
 
     statusJuego.innertext = mensaje;
     close.disabled = true;
-    iniciar.disabled = false;
+    start.disabled = false;
     jugadorPC.manosGanadas = 0;
     jugadorHumano.manosGanadas = 0;
     jugadorPC.manosEmpatadas = 0;
