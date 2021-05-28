@@ -27,7 +27,7 @@ class Partido {
   mostrarCartas() {
     jugadorHumano.mostrarCartas();
     jugadorPC.mostrarCartasPCTapadas();
-    statusJuego.innerText = " \n Cartas en la mesa";
+    statusJuego.innerText = "Cartas en la mesa";
     repartir.disabled = true;
     puntuar.disabled = false;
   }
@@ -56,7 +56,7 @@ class Partido {
       ? (ganador = "\n Nadie gana.")
       : (ganador = "\n El ganador es " + ganador);
     resultado =
-      " \n El puntaje del jugador Humano es " +
+      " El puntaje del jugador Humano es " +
       jugadorHumano.consultarPuntajeMano() +
       " y el del jugador PC es " +
       jugadorPC.consultarPuntajeMano() +

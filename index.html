@@ -25,18 +25,14 @@
       <button class="playButton" id="cerrar" disabled>Cerrar mano</button>
       <div class="messageContainer">
         <h2>Estado del Juego</h2>
-        <textarea
-          class="messageDisplay"
-          id="status"
-          rows="7"
-          cols="25"
-          readonly
-        ></textarea>
+        <div class="messageDisplay" id="statusContainer">
+          <p id="status"></p>
+        </div>
       </div>
       <div class="messageContainer">
         <h2>&nbsp;&nbsp;&nbsp;Manos&nbsp;&nbsp;&nbsp;</h2>
         <label
-          >Humano 
+          >Humano
           <input
             class="counter"
             id="humanRoundCounter"
@@ -46,7 +42,7 @@
           />
         </label>
         <label
-          >PC 
+          >PC
           <input
             class="counter"
             id="pcRoundCounter"
@@ -56,7 +52,7 @@
           />
         </label>
         <label
-          >Empates 
+          >Empates
           <input
             class="counter"
             id="tiedRoundCounter"
@@ -89,7 +85,7 @@
           />
         </label>
         <label
-          >Empates 
+          >Empates
           <input
             class="counter"
             id="tiedMatchCounter"
