@@ -26,7 +26,7 @@ class Jugador {
   }
 
   mostrarCartas() {
-    drawCards(this.mano, contenedorCartasHumano);
+    drawCards(this.mano, humanContainer);
   }
 
   get NombrePuntos() {
@@ -43,11 +43,11 @@ class Jugador {
   }
 
   mostrarCartasPCTapadas() {
-    drawCards(cartasReverso, contenedorReverso);
+    drawCards(cartasReverso, pcContainer);
   }
 
   mostrarCartasPC() {
-    drawCards(this.mano, contenedorReverso);
+    drawCards(this.mano, pcContainer);
   }
 
   limpiar() {

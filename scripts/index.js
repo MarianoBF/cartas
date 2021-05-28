@@ -12,14 +12,14 @@ function startMatch(){
 startMatch()
 
 //Referencias
-const contenedorReverso = document.getElementById("contenedorReverso");
-const contenedorCartasHumano = document.getElementById(
-  "contenedorCartasHumano"
+const pcContainer = document.getElementById("pcContainer");
+const humanContainer = document.getElementById(
+  "humanContainer"
 );
-const iniciar = document.getElementById("iniciar");
-const repartir = document.getElementById("repartir");
-const puntuar = document.getElementById("puntuar");
-const cerrar = document.getElementById("cerrar");
+const start = document.getElementById("start");
+const deal = document.getElementById("deal");
+const score = document.getElementById("score");
+const close = document.getElementById("close");
 const rules = document.getElementById("rules");
 const save_load = document.getElementById("save_load");
 const statusJuego = document.getElementById("status");
@@ -51,10 +51,10 @@ const cartasReverso = [
 //Event listeners
 save_load.addEventListener("click", () => saverLoader());
 rules.addEventListener("click", showRules);
-iniciar.addEventListener("click", () => partido.iniciarMano());
-repartir.addEventListener("click", () => partido.mostrarCartas());
-puntuar.addEventListener("click", () => partido.compararValores());
-cerrar.addEventListener("click", () => {
+start.addEventListener("click", () => partido.iniciarMano());
+deal.addEventListener("click", () => partido.mostrarCartas());
+score.addEventListener("click", () => partido.compararValores());
+close.addEventListener("click", () => {
   if (partido.manosJugadas > 1) {
     //1 porque suma al final de la mano
     partido.terminarPartida();

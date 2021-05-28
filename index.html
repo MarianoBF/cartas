@@ -14,15 +14,15 @@
     <title>Juego de cartas</title>
   </head>
   <body>
-    <div id="contenedorCartasHumano" class="contenedorCartas"></div>
+    <div id="humanContainer" class="cardContainer"></div>
 
-    <div id="botonera" class="botonera">
-      <button class="playButton" id="iniciar">Iniciar nuevo partido</button>
-      <button class="playButton" id="repartir" disabled>Repartir mano</button>
-      <button class="playButton" id="puntuar" disabled>
+    <div id="buttons" class="buttons">
+      <button class="playButton" id="start">Iniciar nuevo partido</button>
+      <button class="playButton" id="deal" disabled>Repartir mano</button>
+      <button class="playButton" id="score" disabled>
         Mostrar cartas y puntaje
       </button>
-      <button class="playButton" id="cerrar" disabled>Cerrar mano</button>
+      <button class="playButton" id="close" disabled>Cerrar mano</button>
       <div class="messageContainer">
         <h2>Estado del Juego</h2>
         <div class="messageDisplay" id="statusContainer">
@@ -98,7 +98,7 @@
       <button id="rules" class="auxButton">Mostrar Reglas</button>
       <button id="save_load" class="auxButton">Cargar</button>
     </div>
-    <div id="contenedorReverso" class="contenedorCartas"></div>
+    <div id="pcContainer" class="cardContainer"></div>
     <script src="./scripts/classes/Mazo.js"></script>
     <script src="./scripts/classes/Jugador.js"></script>
     <script src="./scripts/classes/Partido.js"></script>

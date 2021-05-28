@@ -12,7 +12,7 @@ body {
     align-items: center;
 }
 
-.contenedorCartas {
+.cardContainer {
     max-width: 90vw;
     margin: 2vh auto;
     flex-basis: 100%;
@@ -23,7 +23,7 @@ body {
     height: 25vh;
 }
 
-.botonera {
+.buttons {
     max-width: 90vw;
     margin: 2vh auto;
     flex-basis: 100%;
@@ -34,7 +34,7 @@ body {
     height: 15vh;
 }
 
-.contenedorCartas img {
+.cardContainer img {
     max-width: 15vw;
     max-height: 25vh;
 }

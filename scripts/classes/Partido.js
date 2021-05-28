@@ -13,13 +13,13 @@ class Partido {
     humanRoundCounter.value = 0;
     pcRoundCounter.value = 0;
     tiedRoundCounter.value = 0;
-    contenedorReverso.innerHTML = "";
-    contenedorCartasHumano.innerHTML = "";
+    pcContainer.innerHTML = "";
+    humanContainer.innerHTML = "";
     jugadorHumano.recibirCartas();
     jugadorPC.recibirCartas();
     statusJuego.innerText = "Listo para repartir";
     iniciar.disabled = true;
-    repartir.disabled = false;
+    deal.disabled = false;
     save_load.disabled = true;
     save_load.innerText = "Guardar";
   }
@@ -28,8 +28,8 @@ class Partido {
     jugadorHumano.mostrarCartas();
     jugadorPC.mostrarCartasPCTapadas();
     statusJuego.innerText = "Cartas en la mesa";
-    repartir.disabled = true;
-    puntuar.disabled = false;
+    deal.disabled = true;
+    score.disabled = false;
   }
 
   compararValores() {
@@ -65,10 +65,10 @@ class Partido {
     humanRoundCounter.value = jugadorHumano.manosGanadas;
     pcRoundCounter.value = jugadorPC.manosGanadas;
     tiedRoundCounter.value = jugadorHumano.manosEmpatadas;
-    puntuar.disabled = true;
-    cerrar.disabled = false;
+    score.disabled = true;
+    close.disabled = false;
     console.log("Mano " + (+this.manosJugadas + 1) + " " + resultado);
-    contenedorReverso.innerHTML = "";
+    pcContainer.innerHTML = "";
     jugadorPC.mostrarCartasPC();
     save_load.disabled = false;
   }
@@ -77,14 +77,14 @@ class Partido {
     statusJuego.innerText += "Preparando siguiente mano...";
     jugadorHumano.limpiar();
     jugadorPC.limpiar();
-    cerrar.disabled = true;
+    close.disabled = true;
     this.manosJugadas++;
     save_load.disabled = true;
   }
 
   terminarPartida() {
     save_load.disabled = true;
-    contenedorReverso.innerHTML = "";
+    pcContainer.innerHTML = "";
     jugadorPC.mostrarCartasPC();
     statusJuego.innerText += "Partido finalizado";
 
@@ -132,7 +132,7 @@ class Partido {
     tiedMatchCounter.value = jugadorHumano.partidosEmpatados;
 
     statusJuego.innertext = mensaje;
-    cerrar.disabled = true;
+    close.disabled = true;
     iniciar.disabled = false;
     jugadorPC.manosGanadas = 0;
     jugadorHumano.manosGanadas = 0;
