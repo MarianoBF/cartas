@@ -43,7 +43,7 @@ class Jugador {
   }
 
   mostrarCartasPCTapadas() {
-    drawCards(cartasReverso, pcContainer);
+    drawCards(cardsBack, pcContainer);
   }
 
   mostrarCartasPC() {

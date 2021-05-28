@@ -30,21 +30,21 @@ const humanMatchCounter = document.getElementById("humanMatchCounter");
 const pcMatchCounter = document.getElementById("pcMatchCounter");
 const tiedMatchCounter = document.getElementById("tiedMatchCounter");
 
-const cartasReverso = [
+const cardsBack = [
   {
-    image: "../images/reverso.png",
+    image: "./images/back.png",
   },
   {
-    image: "../images/reverso.png",
+    image: "./images/back.png",
   },
   {
-    image: "../images/reverso.png",
+    image: "./images/back.png",
   },
   {
-    image: "../images/reverso.png",
+    image: "./images/back.png",
   },
   {
-    image: "../images/reverso.png",
+    image: "./images/back.png",
   },
 ];
 
