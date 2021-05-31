@@ -18,7 +18,7 @@ body {
     flex-basis: 100%;
     display: flex;
     align-items: center;
-    height: 25vh;
+    height: 15vh;
     overflow-x: scroll;
 }
 
@@ -30,12 +30,12 @@ body {
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    height: 30vh;
+    height: 50vh;
 }
 
 .cardContainer img {
     max-width: 25vw;
-    max-height: 25vh;
+    max-height: 15vh;
     margin-right: 10px;
 }
 
@@ -119,7 +119,46 @@ body {
     background: #F6EDD9;
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
+    .playButton {
+        height: 30%;
+        width: 12vw;
+    }
+    .auxButton {
+        height: 30%;
+        width: 12vw;
+    }
+    .messageDisplay {
+        height: 6rem;
+    }
+    .messageContainer {
+
+        font-weight: 500;
+        font-size: 1.5em;
+        line-height: 1.5em;
+        padding: 5px;
+    }
+
+    .buttons {
+        max-height: 40vh;
+    }
+
+    .cardContainer img {
+        max-width: 15vw;
+        max-height: 20vh;
+        margin: 0;
+    }
+    
+    .cardContainer {
+        height: 20vh;
+        flex-wrap: wrap;
+        overflow-x: unset;
+        justify-content: space-around;
+    }
+}
+
+
+@media (min-width: 1024px) {
     .playButton {
         height: 50%;
         width: 8vw;
@@ -138,6 +177,11 @@ body {
         line-height: 1.5em;
         padding: 5px;
     }
+
+    .buttons {
+        max-height: 30vh;
+    }
+
     .button {
         height: 15vh;
     }
@@ -149,6 +193,7 @@ body {
     }
     
     .cardContainer {
+        height: 25vh;
         flex-wrap: wrap;
         overflow-x: unset;
         justify-content: space-around;
