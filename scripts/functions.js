@@ -13,7 +13,7 @@ async function getFullDeck() {
 }
 
 async function getHand() {
-  let id = mazo.consultarId();
+  let id = deck.consultarId();
   try {
     let data = await fetch(
       `https://deckofcardsapi.com/api/deck/${id}/draw/?count=5`

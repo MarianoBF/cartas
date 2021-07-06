@@ -1,11 +1,11 @@
 let jugadorHumano = new Jugador("Humano", true);
 let jugadorPC = new Jugador("PC", false);
 let partido = new Partido();
-let mazo;
+let deck;
 
 function startMatch(){
   getFullDeck()
-    .then(data => (mazo = new Mazo(data)))
+    .then(data => (deck = new Deck(data)))
     .catch(error => console.log(error));
 }
 
