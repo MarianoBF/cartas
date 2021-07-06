@@ -138,6 +138,6 @@ class Match {
     jugadorHumano.manosGanadas = 0;
     jugadorPC.manosEmpatadas = 0;
     jugadorHumano.manosEmpatadas = 0;
-    partido.roundsPlayed = 0;
+    match.roundsPlayed = 0;
   }
 }

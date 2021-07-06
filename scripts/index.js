@@ -1,6 +1,6 @@
 let jugadorHumano = new Jugador("Humano", true);
 let jugadorPC = new Jugador("PC", false);
-let partido = new Partido();
+let match = new Match();
 let deck;
 
 function startMatch(){
@@ -51,16 +51,16 @@ const cardsBack = [
 //Event listeners
 save_load.addEventListener("click", () => saverLoader());
 rules.addEventListener("click", showRules);
-start.addEventListener("click", () => partido.startRound());
-deal.addEventListener("click", () => partido.showCards());
-score.addEventListener("click", () => partido.compareCards());
+start.addEventListener("click", () => match.startRound());
+deal.addEventListener("click", () => match.showCards());
+score.addEventListener("click", () => match.compareCards());
 close.addEventListener("click", () => {
-  if (partido.roundsPlayed > 1) {
+  if (match.roundsPlayed > 1) {
     //1 porque suma al final de la mano
-    partido.endMatch();
+    match.endMatch();
     startMatch();
   } else {
-    partido.endRound();
-    setTimeout(partido.iniciarMano, 1000);
+    match.endRound();
+    setTimeout(match.startRound, 1000);
   }
 });
