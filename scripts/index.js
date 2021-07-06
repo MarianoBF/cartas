@@ -22,7 +22,7 @@ const score = document.getElementById("score");
 const close = document.getElementById("close");
 const rules = document.getElementById("rules");
 const save_load = document.getElementById("save_load");
-const statusJuego = document.getElementById("status");
+const gameStatus = document.getElementById("status");
 const humanRoundCounter = document.getElementById("humanRoundCounter");
 const pcRoundCounter = document.getElementById("pcRoundCounter");
 const tiedRoundCounter = document.getElementById("tiedRoundCounter");
@@ -51,16 +51,16 @@ const cardsBack = [
 //Event listeners
 save_load.addEventListener("click", () => saverLoader());
 rules.addEventListener("click", showRules);
-start.addEventListener("click", () => partido.iniciarMano());
-deal.addEventListener("click", () => partido.mostrarCartas());
-score.addEventListener("click", () => partido.compararValores());
+start.addEventListener("click", () => partido.startRound());
+deal.addEventListener("click", () => partido.showCards());
+score.addEventListener("click", () => partido.compareCards());
 close.addEventListener("click", () => {
-  if (partido.manosJugadas > 1) {
+  if (partido.roundsPlayed > 1) {
     //1 porque suma al final de la mano
-    partido.terminarPartida();
+    partido.endMatch();
     startMatch();
   } else {
-    partido.cerrarMano();
+    partido.endRound();
     setTimeout(partido.iniciarMano, 1000);
   }
 });

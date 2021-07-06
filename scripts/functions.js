@@ -20,7 +20,7 @@ async function getHand() {
     );
     cards = await data.json();
   } catch {
-    if (partido.errores >= 5) {
+    if (partido.errors >= 5) {
       alert(
         "El servidor está dando demasiados errores. Reiniciando la partida..."
       );
@@ -29,7 +29,7 @@ async function getHand() {
     alert(
       "No se pudieron traer las cartas, hubo un problema en el servidor. Reintentando..."
     );
-    partido.errores++;
+    partido.errors++;
     getHand();
   }
   return cards.cards;
@@ -75,7 +75,7 @@ function saverLoader() {
         tiedMatches: jugadorHumano.partidosEmpatados,
         matchWinsHuman: jugadorHumano.partidosGanados,
         matchWinsPC: jugadorPC.partidosGanados,
-        playedRounds: partido.manosJugadas + 1,
+        playedRounds: partido.roundsPlayed + 1,
       };
       localStorage.setItem("cartas", JSON.stringify(gameState));
       save_load.innerText = "Cargar";
@@ -98,7 +98,7 @@ function saverLoader() {
       humanMatchCounter.value = gameState.matchWinsHuman;
       jugadorPC.partidosGanados = gameState.matchWinsPC;
       pcMatchCounter.value = gameState.matchWinsPC
-      partido.manosJugadas = gameState.playedRounds;
+      partido.roundsPlayed = gameState.playedRounds;
 
     } catch {
       alert("No se pudo cargar la partida");

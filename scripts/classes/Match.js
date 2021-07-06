@@ -1,15 +1,15 @@
-class Partido {
+class Match {
   id;
-  manosJugadas;
-  errores;
+  roundsPlayed;
+  errors;
 
   constructor() {
     this.id = new Date();
-    this.manosJugadas = 0;
-    this.errores = 0;
+    this.roundsPlayed = 0;
+    this.errors = 0;
   }
 
-  iniciarMano() {
+  startRound() {
     humanRoundCounter.value = 0;
     pcRoundCounter.value = 0;
     tiedRoundCounter.value = 0;
@@ -17,22 +17,22 @@ class Partido {
     humanContainer.innerHTML = "";
     jugadorHumano.recibirCartas();
     jugadorPC.recibirCartas();
-    statusJuego.innerText = "Listo para repartir";
+    gameStatus.innerText = "Listo para repartir";
     start.disabled = true;
     deal.disabled = false;
     save_load.disabled = true;
     save_load.innerText = "Guardar";
   }
 
-  mostrarCartas() {
+  showCards() {
     jugadorHumano.mostrarCartas();
     jugadorPC.mostrarCartasPCTapadas();
-    statusJuego.innerText = "Cartas en la mesa";
+    gameStatus.innerText = "Cartas en la mesa";
     deal.disabled = true;
     score.disabled = false;
   }
 
-  compararValores() {
+  compareCards() {
     let resultado = "";
     let ganador = "";
     jugadorHumano.calcularPuntos();
@@ -61,32 +61,32 @@ class Partido {
       " y el del jugador PC es " +
       jugadorPC.consultarPuntajeMano() +
       ganador;
-    statusJuego.innerText = resultado;
+    gameStatus.innerText = resultado;
     humanRoundCounter.value = jugadorHumano.manosGanadas;
     pcRoundCounter.value = jugadorPC.manosGanadas;
     tiedRoundCounter.value = jugadorHumano.manosEmpatadas;
     score.disabled = true;
     close.disabled = false;
-    console.log("Mano " + (+this.manosJugadas + 1) + " " + resultado);
+    console.log("Mano " + (+this.roundsPlayed + 1) + " " + resultado);
     pcContainer.innerHTML = "";
     jugadorPC.mostrarCartasPC();
     save_load.disabled = false;
   }
 
-  cerrarMano() {
-    statusJuego.innerText = "Preparando siguiente mano...";
+  endRound() {
+    gameStatus.innerText = "Preparando siguiente mano...";
     jugadorHumano.limpiar();
     jugadorPC.limpiar();
     close.disabled = true;
-    this.manosJugadas++;
+    this.roundsPlayed++;
     save_load.disabled = true;
   }
 
-  terminarPartida() {
+  endMatch() {
     save_load.disabled = true;
     pcContainer.innerHTML = "";
     jugadorPC.mostrarCartasPC();
-    statusJuego.innerText += "Partido finalizado";
+    gameStatus.innerText += "Partido finalizado";
 
     let jugadorGanador;
 
@@ -125,19 +125,19 @@ class Partido {
       mensaje = mensaje + "No ganó nadie, perdieron los dos";
     }
 
-    statusJuego.innerText = mensaje;
+    gameStatus.innerText = mensaje;
 
     humanMatchCounter.value = jugadorHumano.partidosGanados;
     pcMatchCounter.value = jugadorPC.partidosGanados;
     tiedMatchCounter.value = jugadorHumano.partidosEmpatados;
 
-    statusJuego.innertext = mensaje;
+    gameStatus.innertext = mensaje;
     close.disabled = true;
     start.disabled = false;
     jugadorPC.manosGanadas = 0;
     jugadorHumano.manosGanadas = 0;
     jugadorPC.manosEmpatadas = 0;
     jugadorHumano.manosEmpatadas = 0;
-    partido.manosJugadas = 0;
+    partido.roundsPlayed = 0;
   }
 }
