@@ -38,15 +38,15 @@ class Match {
     jugadorHumano.calcularPuntos();
     jugadorPC.calcularPuntos();
     if (
-      jugadorHumano.consultarPuntajeMano() > jugadorPC.consultarPuntajeMano()
+      jugadorHumano.getRoundPoints() > jugadorPC.getRoundPoints()
     ) {
-      ganador = jugadorHumano.consultarNombre();
+      ganador = jugadorHumano.getName();
       jugadorHumano.manosGanadas++;
     } else if (
-      jugadorPC.consultarPuntajeMano() > jugadorHumano.consultarPuntajeMano()
+      jugadorPC.getRoundPoints() > jugadorHumano.getRoundPoints()
     ) {
       jugadorPC.manosGanadas++;
-      ganador = jugadorPC.consultarNombre();
+      ganador = jugadorPC.getName();
     } else {
       jugadorHumano.manosEmpatadas++;
       jugadorPC.manosEmpatadas++;
@@ -57,9 +57,9 @@ class Match {
       : (ganador = "\n El ganador es " + ganador);
     resultado =
       " El puntaje del jugador Humano es " +
-      jugadorHumano.consultarPuntajeMano() +
+      jugadorHumano.getRoundPoints() +
       " y el del jugador PC es " +
-      jugadorPC.consultarPuntajeMano() +
+      jugadorPC.getRoundPoints() +
       ganador;
     gameStatus.innerText = resultado;
     humanRoundCounter.value = jugadorHumano.manosGanadas;
@@ -75,8 +75,8 @@ class Match {
 
   endRound() {
     gameStatus.innerText = "Preparando siguiente mano...";
-    jugadorHumano.limpiar();
-    jugadorPC.limpiar();
+    jugadorHumano.cleanUp();
+    jugadorPC.cleanUp();
     close.disabled = true;
     this.roundsPlayed++;
     save_load.disabled = true;

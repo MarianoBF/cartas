@@ -1,10 +1,10 @@
 class Deck {
     constructor(deck) {
       this.id = deck.deck_id;
-      this.cantidadCartas = deck.remaining;
+      this.availableCards = deck.remaining;
     }
   
-    consultarId() {
+    getId() {
       return this.id;
     }
   }

@@ -13,7 +13,7 @@ async function getFullDeck() {
 }
 
 async function getHand() {
-  let id = deck.consultarId();
+  let id = deck.getId();
   try {
     let data = await fetch(
       `https://deckofcardsapi.com/api/deck/${id}/draw/?count=5`

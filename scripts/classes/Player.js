@@ -1,4 +1,4 @@
-class Jugador {
+class Player {
   nombre;
   mano;
   puntos;
@@ -50,20 +50,20 @@ class Jugador {
     drawCards(this.mano, pcContainer);
   }
 
-  limpiar() {
+  cleanUp() {
     this.mano = [];
     this.puntaje_mano = 0;
   }
 
-  consultarPuntajeMano() {
+  getRoundPoints() {
     return this.puntaje_mano;
   }
 
-  consultarPuntos() {
+  getMatchPoints() {
     return this.puntos;
   }
 
-  consultarNombre() {
+  getName() {
     return this.nombre;
   }
 }

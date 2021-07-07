@@ -1,5 +1,5 @@
-let jugadorHumano = new Jugador("Humano", true);
-let jugadorPC = new Jugador("PC", false);
+let jugadorHumano = new Player("Humano", true);
+let jugadorPC = new Player("PC", false);
 let match = new Match();
 let deck;
 
