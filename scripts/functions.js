@@ -69,12 +69,12 @@ function saverLoader() {
   if (save_load.innerText === "Guardar") {
     try {
       const gameState = {
-        tiedRounds: jugadorHumano.manosEmpatadas,
-        humanRounds: jugadorHumano.manosGanadas,
-        PCRounds: jugadorPC.manosGanadas,
-        tiedMatches: jugadorHumano.partidosEmpatados,
-        matchWinsHuman: jugadorHumano.partidosGanados,
-        matchWinsPC: jugadorPC.partidosGanados,
+        tiedRounds: Human.roundsTied,
+        humanRounds: Human.roundsWon,
+        PCRounds: AI.roundsWon,
+        tiedMatches: Human.partidosEmpatados,
+        matchWinsHuman: Human.partidosGanados,
+        matchWinsPC: AI.partidosGanados,
         playedRounds: partido.roundsPlayed + 1,
       };
       localStorage.setItem("cartas", JSON.stringify(gameState));
@@ -86,17 +86,17 @@ function saverLoader() {
     try {
       const gameState = JSON.parse(localStorage.getItem("cartas"));
       save_load.innerText = "Guardar";
-      jugadorHumano.manosEmpatadas = gameState.tiedRounds;
+      Human.roundsTied = gameState.tiedRounds;
       tiedRoundCounter.value = gameState.tiedRounds;
-      jugadorHumano.manosGanadas = gameState.humanRounds;
+      Human.roundsWon = gameState.humanRounds;
       humanRoundCounter.value = gameState.humanRounds;
-      jugadorPC.manosGanadas = gameState.PCRounds;
+      AI.roundsWon = gameState.PCRounds;
       pcRoundCounter.value = gameState.PCRounds;
-      jugadorHumano.partidosEmpatados = gameState.tiedMatches;
+      Human.partidosEmpatados = gameState.tiedMatches;
       tiedMatchCounter.value = gameState.tiedMatches;
-      jugadorHumano.partidosGanados = gameState.matchWinsHuman;
+      Human.partidosGanados = gameState.matchWinsHuman;
       humanMatchCounter.value = gameState.matchWinsHuman;
-      jugadorPC.partidosGanados = gameState.matchWinsPC;
+      AI.partidosGanados = gameState.matchWinsPC;
       pcMatchCounter.value = gameState.matchWinsPC
       match.roundsPlayed = gameState.playedRounds;
 

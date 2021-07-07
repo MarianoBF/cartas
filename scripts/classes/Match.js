@@ -15,8 +15,8 @@ class Match {
     tiedRoundCounter.value = 0;
     pcContainer.innerHTML = "";
     humanContainer.innerHTML = "";
-    jugadorHumano.recibirCartas();
-    jugadorPC.recibirCartas();
+    Human.getCards();
+    AI.getCards();
     gameStatus.innerText = "Listo para repartir";
     start.disabled = true;
     deal.disabled = false;
@@ -25,58 +25,58 @@ class Match {
   }
 
   showCards() {
-    jugadorHumano.mostrarCartas();
-    jugadorPC.mostrarCartasPCTapadas();
+    Human.showHumanCards();
+    AI.showBackOfCards();
     gameStatus.innerText = "Cartas en la mesa";
     deal.disabled = true;
     score.disabled = false;
   }
 
   compareCards() {
-    let resultado = "";
-    let ganador = "";
-    jugadorHumano.calcularPuntos();
-    jugadorPC.calcularPuntos();
+    let result = "";
+    let winner = "";
+    Human.calcPoints();
+    AI.calcPoints();
     if (
-      jugadorHumano.getRoundPoints() > jugadorPC.getRoundPoints()
+      Human.getRoundPoints() > AI.getRoundPoints()
     ) {
-      ganador = jugadorHumano.getName();
-      jugadorHumano.manosGanadas++;
+      winner = Human.getName();
+      Human.roundsWon++;
     } else if (
-      jugadorPC.getRoundPoints() > jugadorHumano.getRoundPoints()
+      AI.getRoundPoints() > Human.getRoundPoints()
     ) {
-      jugadorPC.manosGanadas++;
-      ganador = jugadorPC.getName();
+      AI.roundsWon++;
+      winner = AI.getName();
     } else {
-      jugadorHumano.manosEmpatadas++;
-      jugadorPC.manosEmpatadas++;
-      ganador = "Empate";
+      Human.roundsTied++;
+      AI.roundsTied++;
+      winner = "Empate";
     }
-    ganador === "Empate"
-      ? (ganador = "\n Nadie gana.")
-      : (ganador = "\n El ganador es " + ganador);
-    resultado =
+    winner === "Empate"
+      ? (winner = "\n Nadie gana.")
+      : (winner = "\n El winner es " + winner);
+    result =
       " El puntaje del jugador Humano es " +
-      jugadorHumano.getRoundPoints() +
+      Human.getRoundPoints() +
       " y el del jugador PC es " +
-      jugadorPC.getRoundPoints() +
-      ganador;
-    gameStatus.innerText = resultado;
-    humanRoundCounter.value = jugadorHumano.manosGanadas;
-    pcRoundCounter.value = jugadorPC.manosGanadas;
-    tiedRoundCounter.value = jugadorHumano.manosEmpatadas;
+      AI.getRoundPoints() +
+      winner;
+    gameStatus.innerText = result;
+    humanRoundCounter.value = Human.roundsWon;
+    pcRoundCounter.value = AI.roundsWon;
+    tiedRoundCounter.value = Human.roundsTied;
     score.disabled = true;
     close.disabled = false;
-    console.log("Mano " + (+this.roundsPlayed + 1) + " " + resultado);
+    console.log("Mano " + (+this.roundsPlayed + 1) + " " + result);
     pcContainer.innerHTML = "";
-    jugadorPC.mostrarCartasPC();
+    AI.showPCCards();
     save_load.disabled = false;
   }
 
   endRound() {
     gameStatus.innerText = "Preparando siguiente mano...";
-    jugadorHumano.cleanUp();
-    jugadorPC.cleanUp();
+    Human.cleanUp();
+    AI.cleanUp();
     close.disabled = true;
     this.roundsPlayed++;
     save_load.disabled = true;
@@ -85,59 +85,59 @@ class Match {
   endMatch() {
     save_load.disabled = true;
     pcContainer.innerHTML = "";
-    jugadorPC.mostrarCartasPC();
+    AI.showPCCards();
     gameStatus.innerText += "Partido finalizado";
 
-    let jugadorGanador;
+    let winner;
 
-    if (jugadorHumano.manosGanadas > jugadorPC.manosGanadas) {
-      jugadorGanador = {
-        nombre: jugadorHumano.nombre,
-        manos: jugadorHumano.manosGanadas,
+    if (Human.roundsWon > AI.roundsWon) {
+      winner = {
+        name: Human.name,
+        rounds: Human.roundsWon,
       };
-      jugadorHumano.partidosGanados++;
-    } else if (jugadorPC.manosGanadas > jugadorHumano.manosGanadas) {
-      jugadorGanador = {
-        nombre: jugadorPC.nombre,
-        manos: jugadorPC.manosGanadas,
+      Human.partidosGanados++;
+    } else if (AI.roundsWon > Human.roundsWon) {
+      winner = {
+        name: AI.name,
+        rounds: AI.roundsWon,
       };
-      jugadorPC.partidosGanados++;
+      AI.partidosGanados++;
     } else {
-      jugadorGanador = "Empate";
-      jugadorHumano.partidosEmpatados++;
+      winner = "Empate";
+      Human.partidosEmpatados++;
     }
 
-    let mensaje =
-      "El ganador del partido fue " +
-      jugadorGanador.nombre +
+    let message =
+      "El winner del partido fue " +
+      winner.name +
       " con " +
-      jugadorGanador.manos +
+      winner.rounds +
       " manos ganadas. ";
 
-    if (jugadorHumano.manosEmpatadas > 0) {
-      mensaje =
-        mensaje + `\n Además, empataron ${jugadorHumano.manosEmpatadas} mano(s). `;
+    if (Human.roundsTied > 0) {
+      message =
+        message + `\n Además, empataron ${Human.roundsTied} mano(s). `;
     } else {
-      mensaje = mensaje + "\n No hubo manos empatadas. ";
+      message = message + "\n No hubo manos empatadas. ";
     }
 
-    if (jugadorGanador === "Empate") {
-      mensaje = mensaje + "No ganó nadie, perdieron los dos";
+    if (winner === "Empate") {
+      message = message + "No ganó nadie, perdieron los dos";
     }
 
-    gameStatus.innerText = mensaje;
+    gameStatus.innerText = message;
 
-    humanMatchCounter.value = jugadorHumano.partidosGanados;
-    pcMatchCounter.value = jugadorPC.partidosGanados;
-    tiedMatchCounter.value = jugadorHumano.partidosEmpatados;
+    humanMatchCounter.value = Human.matchesWon;
+    pcMatchCounter.value = AI.matchesWon;
+    tiedMatchCounter.value = Human.matchesTied;
 
-    gameStatus.innertext = mensaje;
+    gameStatus.innertext = message;
     close.disabled = true;
     start.disabled = false;
-    jugadorPC.manosGanadas = 0;
-    jugadorHumano.manosGanadas = 0;
-    jugadorPC.manosEmpatadas = 0;
-    jugadorHumano.manosEmpatadas = 0;
+    AI.roundsWon = 0;
+    Human.roundsWon = 0;
+    AI.roundsTied = 0;
+    Human.roundsTied = 0;
     match.roundsPlayed = 0;
   }
 }

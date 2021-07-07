@@ -1,69 +1,61 @@
 class Player {
-  nombre;
-  mano;
-  puntos;
-  puntaje_mano;
-  esHumano;
-  manosGanadas;
-  manosEmpatadas;
-  partidosGanados;
-  partidosEmpatados;
+  name;
+  hand;
+  score;
+  roundScore;
+  isHuman;
+  roundsWon;
+  roundsTied;
+  matchesWon;
+  matchesTied;
 
-  constructor(nombre, esHumano) {
-    this.nombre = nombre;
-    this.puntos = 0;
-    this.esHumano = esHumano;
-    this.manosGanadas = 0;
-    this.manosEmpatadas = 0;
-    this.partidosGanados = 0;
-    this.partidosEmpatados = 0;
+  constructor(name, isHuman) {
+    this.name = name;
+    this.score = 0;
+    this.isHuman = isHuman;
+    this.roundsWon = 0;
+    this.roundsTied = 0;
+    this.matchesWon = 0;
+    this.matchesTied = 0;
   }
 
-  recibirCartas() {
-    getHand().then(mano => {
-      this.mano = mano;
+  getCards() {
+    getHand().then(hand => {
+      this.hand = hand;
     });
   }
 
-  mostrarCartas() {
-    drawCards(this.mano, humanContainer);
+  showHumanCards() {
+    drawCards(this.hand, humanContainer);
   }
 
-  get NombrePuntos() {
-    return this.nombre + this.puntos;
+  calcPoints() {
+    this.roundScore = addScore(this.hand);
+    this.score += this.roundScore;
   }
 
-  set NombrePuntos(cambio) {
-    [this.nombre, this.puntos] = cambio.split(" ");
-  }
-
-  calcularPuntos() {
-    this.puntaje_mano = addScore(this.mano);
-    this.puntos += this.puntaje_mano;
-  }
-
-  mostrarCartasPCTapadas() {
+  showBackOfCards() {
     drawCards(cardsBack, pcContainer);
   }
 
-  mostrarCartasPC() {
-    drawCards(this.mano, pcContainer);
+  showPCCards() {
+    drawCards(this.hand, pcContainer);
   }
 
   cleanUp() {
-    this.mano = [];
-    this.puntaje_mano = 0;
+    this.hand = [];
+    this.roundScore = 0;
   }
 
   getRoundPoints() {
-    return this.puntaje_mano;
+    return this.roundScore;
   }
 
   getMatchPoints() {
-    return this.puntos;
+    return this.score;
   }
 
   getName() {
-    return this.nombre;
+    return this.name;
   }
 }
