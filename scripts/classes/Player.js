@@ -37,7 +37,6 @@ class Player {
 
   showHumanCards() {
     drawCards(this.hand, humanContainer);
-    console.log("draw", this.hand)
   }
 
   calcPoints() {

@@ -34,10 +34,18 @@ class Match {
 
   changecards() {
     gameStatus.innerText = "Cambiando cartas";
-    let numberCardsToChange = prompt("¿Querés cambiar cartas? Indicá la cantidad o 0 si te quedás con las que tenés.")
-    //TODO corregir valores
-    if (numberCardsToChange>0) {
-      Human.updateCards(numberCardsToChange)
+    let numberCardsToChange;
+    while (
+      isNaN(numberCardsToChange) ||
+      numberCardsToChange < 0 ||
+      numberCardsToChange > 5
+    ) {
+      numberCardsToChange = prompt(
+        "¿Querés cambiar cartas? Indicá la cantidad o 0 si te quedás con las que tenés."
+      );
+    }
+    if (numberCardsToChange !== 0) {
+      Human.updateCards(numberCardsToChange);
       humanContainer.innerHTML = "";
     }
     change.disabled = true;
@@ -75,7 +83,6 @@ class Match {
     tiedRoundCounter.value = Human.roundsTied;
     score.disabled = true;
     close.disabled = false;
-    console.log("Mano " + (+this.roundsPlayed + 1) + " " + result);
     pcContainer.innerHTML = "";
     AI.showPCCards();
     save_load.disabled = false;
