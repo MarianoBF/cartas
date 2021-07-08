@@ -11,6 +11,7 @@ const humanContainer = document.getElementById(
 );
 const start = document.getElementById("start");
 const deal = document.getElementById("deal");
+const change = document.getElementById("change");
 const score = document.getElementById("score");
 const close = document.getElementById("close");
 const rules = document.getElementById("rules");
@@ -45,6 +46,7 @@ const cardsBack = [
 save_load.addEventListener("click", () => saverLoader());
 rules.addEventListener("click", showRules);
 start.addEventListener("click", () => match.startRound());
+change.addEventListener("click", ()=>match.changecards());
 deal.addEventListener("click", () => match.showCards());
 score.addEventListener("click", () => match.compareCards());
 close.addEventListener("click", () => {

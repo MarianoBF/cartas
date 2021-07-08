@@ -29,11 +29,19 @@ class Match {
     AI.showBackOfCards();
     gameStatus.innerText = "Cartas en la mesa";
     deal.disabled = true;
-    score.disabled = false;
+    change.disabled = false;
   }
 
-  changecards(numberOfCards) {
-    Human.updateCards(numberOfCards)
+  changecards() {
+    gameStatus.innerText = "Cambiando cartas";
+    let numberCardsToChange = prompt("¿Querés cambiar cartas? Indicá la cantidad o 0 si te quedás con las que tenés.")
+    //TODO corregir valores
+    if (numberCardsToChange>0) {
+      Human.updateCards(numberCardsToChange)
+    }
+    change.disabled = true;
+    score.disabled = false;
+    Human.showHumanCards();
   }
 
   compareCards() {

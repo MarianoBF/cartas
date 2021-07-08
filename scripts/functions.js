@@ -30,7 +30,7 @@ async function auxGetCards(number) {
       "No se pudieron traer las cartas, hubo un problema en el servidor. Reintentando..."
     );
      match.errors++;
-    getHand();
+     auxGetCards();
   }
   return cards.cards;
 }
