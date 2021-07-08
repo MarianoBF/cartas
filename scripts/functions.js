@@ -29,8 +29,8 @@ async function auxGetCards(number) {
     alert(
       "No se pudieron traer las cartas, hubo un problema en el servidor. Reintentando..."
     );
-     match.errors++;
-     auxGetCards();
+    match.errors++;
+    auxGetCards();
   }
   return cards.cards;
 }
@@ -60,6 +60,7 @@ function addScore(hand) {
 function showRules() {
   alert(
     "Se suman los puntajes de cada carta numérica, las figuras (J,Q,K) suman 10 puntos y el As 15 puntos.\n" +
+      "Podés cambiar algunas cartas en la ronda intermedia. \n" +
       "El mejor de 3 manos, gana. \n" +
       "Al terminar cada ronda podés grabar."
   );
@@ -72,9 +73,9 @@ function saverLoader() {
         tiedRounds: Human.roundsTied,
         humanRounds: Human.roundsWon,
         PCRounds: AI.roundsWon,
-        tiedMatches: Human.partidosEmpatados,
-        matchWinsHuman: Human.partidosGanados,
-        matchWinsPC: AI.partidosGanados,
+        tiedMatches: Human.matchesTied,
+        matchWinsHuman: Human.matchesWon,
+        matchWinsPC: AI.matchesWon,
         playedRounds: partido.roundsPlayed + 1,
       };
       localStorage.setItem("cartas", JSON.stringify(gameState));
@@ -92,14 +93,13 @@ function saverLoader() {
       humanRoundCounter.value = gameState.humanRounds;
       AI.roundsWon = gameState.PCRounds;
       pcRoundCounter.value = gameState.PCRounds;
-      Human.partidosEmpatados = gameState.tiedMatches;
+      Human.matchesTied = gameState.tiedMatches;
       tiedMatchCounter.value = gameState.tiedMatches;
-      Human.partidosGanados = gameState.matchWinsHuman;
+      Human.matchesWon = gameState.matchWinsHuman;
       humanMatchCounter.value = gameState.matchWinsHuman;
-      AI.partidosGanados = gameState.matchWinsPC;
-      pcMatchCounter.value = gameState.matchWinsPC
+      AI.matchesWon = gameState.matchWinsPC;
+      pcMatchCounter.value = gameState.matchWinsPC;
       match.roundsPlayed = gameState.playedRounds;
-
     } catch {
       alert("No se pudo cargar la partida");
     }

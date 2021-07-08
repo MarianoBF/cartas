@@ -26,7 +26,6 @@ class Player {
   }
 
   updateCards(number) {
-    //TODO: Remove current cards
     auxGetCards(number).then(newCards => {
       this.hand = this.hand.sort((a, b) => 0.5 - Math.random())
       this.hand.splice(0,number)
@@ -59,10 +58,6 @@ class Player {
 
   getRoundPoints() {
     return this.roundScore;
-  }
-
-  getMatchPoints() {
-    return this.score;
   }
 
   getName() {

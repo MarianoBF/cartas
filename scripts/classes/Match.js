@@ -110,16 +110,16 @@ class Match {
         name: Human.name,
         rounds: Human.roundsWon,
       };
-      Human.partidosGanados++;
+      Human.matchesWon++;
     } else if (AI.roundsWon > Human.roundsWon) {
       winner = {
         name: AI.name,
         rounds: AI.roundsWon,
       };
-      AI.partidosGanados++;
+      AI.matchesWon++;
     } else {
       winner = "Empate";
-      Human.partidosEmpatados++;
+      Human.matchesTied++;
     }
 
     let message =
@@ -140,6 +140,8 @@ class Match {
     }
 
     gameStatus.innerText = message;
+
+    console.log(Human.matchesWon, Human.matchesTied, AI.matchesWon)
 
     humanMatchCounter.value = Human.matchesWon;
     pcMatchCounter.value = AI.matchesWon;
