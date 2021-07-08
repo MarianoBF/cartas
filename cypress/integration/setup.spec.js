@@ -15,6 +15,10 @@ context('Assertions', () => {
       .should('have.text', 'Repartir mano')
       .should("be.disabled")
 
+      cy.get('#change')
+      .should('have.text', 'Cambiar cartas')
+      .should("be.disabled")
+
       cy.get('#score')
       .should('have.text', 'Mostrar cartas y puntaje')
       .should("be.disabled")

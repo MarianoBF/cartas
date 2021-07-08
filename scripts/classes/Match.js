@@ -62,7 +62,7 @@ class Match {
     }
     winner === "Empate"
       ? (winner = "\n Nadie gana.")
-      : (winner = "\n El winner es " + winner);
+      : (winner = "\n El ganador es " + winner);
     result =
       " El puntaje del jugador Humano es " +
       Human.getRoundPoints() +
@@ -116,7 +116,7 @@ class Match {
     }
 
     let message =
-      "El winner del partido fue " +
+      "El ganador del partido fue " +
       winner.name +
       " con " +
       winner.rounds +
