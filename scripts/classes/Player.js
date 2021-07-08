@@ -28,13 +28,16 @@ class Player {
   updateCards(number) {
     //TODO: Remove current cards
     auxGetCards(number).then(newCards => {
+      this.hand = this.hand.sort((a, b) => 0.5 - Math.random())
+      this.hand.splice(0,number)
       this.hand = [...this.hand, ...newCards];
-      console.log(this.hand, newCards)
+      this.showHumanCards(); 
     });
   }
 
   showHumanCards() {
     drawCards(this.hand, humanContainer);
+    console.log("draw", this.hand)
   }
 
   calcPoints() {

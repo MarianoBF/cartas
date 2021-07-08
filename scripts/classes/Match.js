@@ -38,10 +38,10 @@ class Match {
     //TODO corregir valores
     if (numberCardsToChange>0) {
       Human.updateCards(numberCardsToChange)
+      humanContainer.innerHTML = "";
     }
     change.disabled = true;
     score.disabled = false;
-    Human.showHumanCards();
   }
 
   compareCards() {
