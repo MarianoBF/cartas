@@ -1,12 +1,21 @@
 class Deck {
-    constructor(deck) {
-      this.id = deck.deck_id;
-      this.availableCards = deck.remaining;
-    }
-  
-    getId() {
-      return this.id;
-    }
+  constructor() {
+    this.id = 0;
+    this.availableCards = 0;
+    this.cards = [];
   }
-  
-  
+
+  getId() {
+    return this.id;
+  }
+
+  startMatch() {
+    getFullDeck()
+      .then(data => {
+        this.id = data.deck_id;
+        this.availableCards = data.remaining;
+        console.log(data)
+      })
+      .catch(error => console.log(error));
+  }
+}

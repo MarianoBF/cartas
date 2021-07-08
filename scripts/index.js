@@ -1,15 +1,8 @@
 let Human = new Player("Humano", true);
 let AI = new Player("PC", false);
 let match = new Match();
-let deck;
-
-function startMatch(){
-  getFullDeck()
-    .then(data => (deck = new Deck(data)))
-    .catch(error => console.log(error));
-}
-
-startMatch()
+let deck = new Deck
+deck.startMatch()
 
 //Referencias
 const pcContainer = document.getElementById("pcContainer");
@@ -58,7 +51,7 @@ close.addEventListener("click", () => {
   if (match.roundsPlayed > 1) {
     //1 porque suma al final de la mano
     match.endMatch();
-    startMatch();
+    deck.startMatch();
   } else {
     match.endRound();
     setTimeout(match.startRound, 1000);

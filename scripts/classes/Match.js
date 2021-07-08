@@ -37,14 +37,10 @@ class Match {
     let winner = "";
     Human.calcPoints();
     AI.calcPoints();
-    if (
-      Human.getRoundPoints() > AI.getRoundPoints()
-    ) {
+    if (Human.getRoundPoints() > AI.getRoundPoints()) {
       winner = Human.getName();
       Human.roundsWon++;
-    } else if (
-      AI.getRoundPoints() > Human.getRoundPoints()
-    ) {
+    } else if (AI.getRoundPoints() > Human.getRoundPoints()) {
       AI.roundsWon++;
       winner = AI.getName();
     } else {
@@ -115,8 +111,7 @@ class Match {
       " manos ganadas. ";
 
     if (Human.roundsTied > 0) {
-      message =
-        message + `\n Además, empataron ${Human.roundsTied} mano(s). `;
+      message = message + `\n Además, empataron ${Human.roundsTied} mano(s). `;
     } else {
       message = message + "\n No hubo manos empatadas. ";
     }
