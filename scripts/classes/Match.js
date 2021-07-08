@@ -32,6 +32,10 @@ class Match {
     score.disabled = false;
   }
 
+  changecards(numberOfCards) {
+    Human.updateCards(numberOfCards)
+  }
+
   compareCards() {
     let result = "";
     let winner = "";

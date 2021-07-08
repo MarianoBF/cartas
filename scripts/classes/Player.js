@@ -20,8 +20,16 @@ class Player {
   }
 
   getCards() {
-    getHand().then(hand => {
+    auxGetCards(5).then(hand => {
       this.hand = hand;
+    });
+  }
+
+  updateCards(number) {
+    //TODO: Remove current cards
+    auxGetCards(number).then(newCards => {
+      this.hand = [...this.hand, ...newCards];
+      console.log(this.hand, newCards)
     });
   }
 

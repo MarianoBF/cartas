@@ -12,11 +12,11 @@ async function getFullDeck() {
   return auxDeck;
 }
 
-async function getHand() {
+async function auxGetCards(number) {
   let id = deck.getId();
   try {
     let data = await fetch(
-      `https://deckofcardsapi.com/api/deck/${id}/draw/?count=5`
+      `https://deckofcardsapi.com/api/deck/${id}/draw/?count=${number}`
     );
     cards = await data.json();
   } catch {

@@ -14,7 +14,6 @@ class Deck {
       .then(data => {
         this.id = data.deck_id;
         this.availableCards = data.remaining;
-        console.log(data)
       })
       .catch(error => console.log(error));
   }
