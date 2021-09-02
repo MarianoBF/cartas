@@ -76,8 +76,11 @@ function saverLoader() {
         tiedMatches: Human.matchesTied,
         matchWinsHuman: Human.matchesWon,
         matchWinsPC: AI.matchesWon,
-        playedRounds: partido.roundsPlayed + 1,
+        playedRounds: match.roundsPlayed + 1,
+        deckId: deck.getId(),
+        availableCards: deck.availableCards,
       };
+      console.log(gameState)
       localStorage.setItem("cartas", JSON.stringify(gameState));
       save_load.innerText = "Cargar";
     } catch {
@@ -100,6 +103,8 @@ function saverLoader() {
       AI.matchesWon = gameState.matchWinsPC;
       pcMatchCounter.value = gameState.matchWinsPC;
       match.roundsPlayed = gameState.playedRounds;
+      deck.setId(gameState.deckId);
+      deck.availableCards = gameState.availableCards;
     } catch {
       alert("No se pudo cargar la partida");
     }

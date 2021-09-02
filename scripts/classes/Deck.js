@@ -1,12 +1,16 @@
 class Deck {
   constructor() {
-    this.id = 0;
+    this.id = "";
     this.availableCards = 0;
     this.cards = [];
   }
 
   getId() {
     return this.id;
+  }
+
+  setId(id) {
+    this.id = id;
   }
 
   startMatch() {
