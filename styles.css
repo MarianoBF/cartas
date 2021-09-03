@@ -194,20 +194,29 @@ body {
 }
 
 .modalContainer {
-  border-radius: 10px;
+  border-radius: 5px;
   background: #fff;
   position: relative;
+  min-width: 40vw;
   padding: 30px;
+  font-size: 2rem;
+}
+
+.numberOfCardsInput{
+  display: block;
+  margin: 15px auto;
+  font-size: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  font-family: "Luckiest Guy", sans-serif;
+  padding: 10px;
 }
 .modalClose {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  outline: none;
-  appearance: none;
-  color: red;
-  background: none;
-  border: 0px;
-  font-weight: bold;
-  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  color: green;
+  font-family: "Luckiest Guy", sans-serif;
+  font-size: 2rem;
+  padding: 10px;
+  background: lightgreen;
 }
