@@ -19,6 +19,7 @@ async function auxGetCards(number) {
       `https://deckofcardsapi.com/api/deck/${id}/draw/?count=${number}`
     );
     cards = await data.json();
+    deck.availableCards = deck.availableCards - number
   } catch {
     if (match.errors >= 5) {
       alert(

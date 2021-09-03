@@ -27,7 +27,7 @@ class Match {
   showCards() {
     Human.showHumanCards();
     AI.showBackOfCards();
-    gameStatus.innerText = "Cartas en la mesa";
+    gameStatus.innerText = "Cartas en la mesa, restan en el mazo " + deck.availableCards + " cartas.";
     deal.disabled = true;
     change.disabled = false;
   }
