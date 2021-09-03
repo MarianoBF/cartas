@@ -111,3 +111,12 @@ function saverLoader() {
     }
   }
 }
+
+function openModal() {
+  console.log("modal!");
+  let modal = document.getElementById('modal');
+  modal.classList.add('openModal')
+  let closeModal = document.getElementById('modalClose')
+  closeModal.addEventListener('click', ()=>{;
+  modal.classList.remove('openModal')})
+}
