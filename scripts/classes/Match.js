@@ -17,13 +17,12 @@ class Match {
     humanContainer.innerHTML = "";
     Human.getCards();
     AI.getCards();
-    gameStatus.innerText = "Listo para repartir";
-    start.disabled = true;
-    deal.disabled = false;
     save_load.disabled = true;
     save_load.innerText = "Guardar";
     setTimeout(()=>{
-      showCards()
+      this.showCards()
+      start.disabled = true;
+      change.disabled = false;
     },1000)
   }
 
@@ -31,24 +30,29 @@ class Match {
     Human.showHumanCards();
     AI.showBackOfCards();
     gameStatus.innerText = "Cartas en la mesa, restan en el mazo " + deck.availableCards + " cartas.";
-    deal.disabled = true;
-    change.disabled = false;
   }
 
   changecards() {
     gameStatus.innerText = "¿Cambio de cartas?";
-    
-    setTimeout(()=>{
-      openModal();
-      if (InputCardsToChange.value > 0) {
-        Human.updateCards(res);
-        humanContainer.innerHTML = "";
-      }
-    }, 150)
+    openModal();
     change.disabled = true;
-    score.disabled = false;
-    gameStatus.innerText = "¿Y? ¿Valió la pena?";
+    show.disabled = false;
+    gameStatus.innerText = "";
   }
+
+  showChangedCards() {
+    if (InputCardsToChange.value > 0) {
+      Human.updateCards(InputCardsToChange.value);
+      humanContainer.innerHTML = "";
+      gameStatus.innerText = "¿Y? ¿Valió la pena?";
+    } else {
+      gameStatus.innerText = "Va con las cartas originales";
+    }
+    show.disabled = true;
+    score.disabled = false;
+
+  }
+
   compareCards() {
     let result = "";
     let winner = "";

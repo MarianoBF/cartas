@@ -117,7 +117,6 @@ function openModal() {
   let modal = document.getElementById("modal");
   let closeModal = document.getElementById("modalClose");
   let modalError = document.getElementById("modalError");
-  let cardsToChange = 0;
   let error = false;
 
   modal.classList.add("openModal");
