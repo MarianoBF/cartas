@@ -211,6 +211,7 @@ body {
   font-family: "Luckiest Guy", sans-serif;
   padding: 10px;
 }
+
 .modalClose {
   display: block;
   margin-left: auto;
@@ -219,4 +220,13 @@ body {
   font-size: 2rem;
   padding: 10px;
   background: lightgreen;
+}
+
+.modalError {
+  color: red;
+  display: none;
+}
+
+.visible {
+  display: unset;
 }

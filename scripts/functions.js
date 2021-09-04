@@ -19,7 +19,7 @@ async function auxGetCards(number) {
       `https://deckofcardsapi.com/api/deck/${id}/draw/?count=${number}`
     );
     cards = await data.json();
-    deck.availableCards = deck.availableCards - number
+    deck.availableCards = deck.availableCards - number;
   } catch {
     if (match.errors >= 5) {
       alert(
@@ -37,7 +37,7 @@ async function auxGetCards(number) {
 }
 
 function drawCards(cartas, container) {
-  cartas.forEach(carta => {
+  cartas.forEach((carta) => {
     let img = document.createElement("IMG");
     img.src = carta.image;
     container.append(img);
@@ -46,7 +46,7 @@ function drawCards(cartas, container) {
 
 function addScore(hand) {
   let sum = 0;
-  hand.forEach(element => {
+  hand.forEach((element) => {
     element.value === "JACK" ||
     element.value === "QUEEN" ||
     element.value === "KING"
@@ -63,7 +63,8 @@ function showRules() {
     "Se suman los puntajes de cada carta numérica, las figuras (J,Q,K) suman 10 puntos y el As 15 puntos.\n" +
       "Podés cambiar algunas cartas en la ronda intermedia. \n" +
       "El mejor de 3 manos, gana. \n" +
-      "Al terminar cada ronda podés grabar."
+      "Al terminar cada ronda podés grabar. \n" +
+      "Para avanzar los pasos, vas apretando cada botón"
   );
 }
 
@@ -81,7 +82,7 @@ function saverLoader() {
         deckId: deck.getId(),
         availableCards: deck.availableCards,
       };
-      console.log(gameState)
+      console.log(gameState);
       localStorage.setItem("cartas", JSON.stringify(gameState));
       save_load.innerText = "Cargar";
     } catch {
@@ -113,10 +114,24 @@ function saverLoader() {
 }
 
 function openModal() {
-  console.log("modal!");
-  let modal = document.getElementById('modal');
-  modal.classList.add('openModal')
-  let closeModal = document.getElementById('modalClose')
-  closeModal.addEventListener('click', ()=>{;
-  modal.classList.remove('openModal')})
+  let modal = document.getElementById("modal");
+  let closeModal = document.getElementById("modalClose");
+  let modalError = document.getElementById("modalError");
+  let cardsToChange = 0;
+  let error = false;
+
+  modal.classList.add("openModal");
+
+  closeModal.addEventListener("click", () => {
+    if (InputCardsToChange.value >= 0 && InputCardsToChange.value <= 5) {
+      modal.classList.remove("openModal");
+      if (error) {
+        modalError.classlist.remove("visible");
+        error = false;
+      }
+    } else {
+      modalError.classlist.add("visible");
+      error = true;
+    }
+  });
 }

@@ -22,6 +22,9 @@ class Match {
     deal.disabled = false;
     save_load.disabled = true;
     save_load.innerText = "Guardar";
+    setTimeout(()=>{
+      showCards()
+    },1000)
   }
 
   showCards() {
@@ -33,26 +36,19 @@ class Match {
   }
 
   changecards() {
-    gameStatus.innerText = "Cambiando cartas";
-    let numberCardsToChange;
-    openModal();
-    // while (
-    //   isNaN(numberCardsToChange) ||
-    //   numberCardsToChange < 0 ||
-    //   numberCardsToChange > 5
-    // ) {
-    //   numberCardsToChange = prompt(
-    //     "¿Querés cambiar cartas? Indicá la cantidad o 0 si te quedás con las que tenés."
-    //   );
-    // }
-    // if (numberCardsToChange !== 0) {
-    //   Human.updateCards(numberCardsToChange);
-    //   humanContainer.innerHTML = "";
-    // }
+    gameStatus.innerText = "¿Cambio de cartas?";
+    
+    setTimeout(()=>{
+      openModal();
+      if (InputCardsToChange.value > 0) {
+        Human.updateCards(res);
+        humanContainer.innerHTML = "";
+      }
+    }, 150)
     change.disabled = true;
     score.disabled = false;
+    gameStatus.innerText = "¿Y? ¿Valió la pena?";
   }
-
   compareCards() {
     let result = "";
     let winner = "";

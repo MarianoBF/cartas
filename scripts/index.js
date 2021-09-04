@@ -23,6 +23,8 @@ const tiedRoundCounter = document.getElementById("tiedRoundCounter");
 const humanMatchCounter = document.getElementById("humanMatchCounter");
 const pcMatchCounter = document.getElementById("pcMatchCounter");
 const tiedMatchCounter = document.getElementById("tiedMatchCounter");
+const InputCardsToChange = document.getElementById("cardsToChange");
+
 
 const cardsBack = [
   {
