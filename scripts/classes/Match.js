@@ -20,7 +20,7 @@ class Match {
     save_load.disabled = true;
     save_load.innerText = "Guardar";
     setTimeout(()=>{
-      this.showCards()
+      match.showCards()
       start.disabled = true;
       change.disabled = false;
     },1000)
@@ -41,8 +41,8 @@ class Match {
   }
 
   showChangedCards() {
-    if (InputCardsToChange.value > 0) {
-      Human.updateCards(InputCardsToChange.value);
+    if (inputCardsToChange.value > 0) {
+      Human.updateCards(inputCardsToChange.value);
       humanContainer.innerHTML = "";
       gameStatus.innerText = "¿Y? ¿Valió la pena?";
     } else {
@@ -50,7 +50,8 @@ class Match {
     }
     show.disabled = true;
     score.disabled = false;
-
+    pcContainer.innerHTML = "";
+    AI.showPCCards();
   }
 
   compareCards() {
@@ -84,8 +85,6 @@ class Match {
     tiedRoundCounter.value = Human.roundsTied;
     score.disabled = true;
     close.disabled = false;
-    pcContainer.innerHTML = "";
-    AI.showPCCards();
     save_load.disabled = false;
   }
 

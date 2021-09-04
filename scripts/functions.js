@@ -122,7 +122,7 @@ function openModal() {
   modal.classList.add("openModal");
 
   closeModal.addEventListener("click", () => {
-    if (InputCardsToChange.value >= 0 && InputCardsToChange.value <= 5) {
+    if (inputCardsToChange.value >= 0 && inputCardsToChange.value <= 5) {
       modal.classList.remove("openModal");
       if (error) {
         modalError.classlist.remove("visible");

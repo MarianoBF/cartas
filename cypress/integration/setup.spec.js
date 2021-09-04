@@ -11,16 +11,16 @@ context('Assertions', () => {
       .should('have.text', 'Iniciar nuevo partido')
       .should("not.be.disabled")
 
-      cy.get('#deal')
-      .should('have.text', 'Repartir mano')
+      cy.get('#change')
+      .should('have.text', '¿Cambiar cartas?')
       .should("be.disabled")
 
-      cy.get('#change')
-      .should('have.text', 'Cambiar cartas')
+      cy.get('#show')
+      .should('have.text', 'Mostrar cartas')
       .should("be.disabled")
 
       cy.get('#score')
-      .should('have.text', 'Mostrar cartas y puntaje')
+      .should('have.text', 'Puntuar')
       .should("be.disabled")
 
       cy.get('#close')
