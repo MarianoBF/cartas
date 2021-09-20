@@ -10,18 +10,18 @@ class Match {
   }
 
   startRound() {
+    start.disabled = true;
     humanRoundCounter.value = 0;
     pcRoundCounter.value = 0;
     tiedRoundCounter.value = 0;
     pcContainer.innerHTML = "";
     humanContainer.innerHTML = "";
     Human.getCards();
-    AI.getCards();
     save_load.disabled = true;
     save_load.innerText = "Guardar";
     setTimeout(()=>{
+      AI.getCards();
       match.showCards()
-      start.disabled = true;
       change.disabled = false;
     },1000)
   }

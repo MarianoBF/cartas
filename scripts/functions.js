@@ -6,34 +6,33 @@ async function getFullDeck() {
     );
     auxDeck = await data.json();
   } catch {
-    alert("No se puedo traer el mazo. Reiniciando partida y reintentando");
-    window.location.reload();
+    alert("No se pudo traer el mazo. Vuelva a intentar en unos minutos");
   }
   return auxDeck;
 }
 
 async function auxGetCards(number) {
-  let id = deck.getId();
-  try {
-    let data = await fetch(
-      `https://deckofcardsapi.com/api/deck/${id}/draw/?count=${number}`
-    );
-    cards = await data.json();
-    deck.availableCards = deck.availableCards - number;
-  } catch {
-    if (match.errors >= 5) {
-      alert(
-        "El servidor está dando demasiados errores. Reiniciando la partida..."
+  if (match.errors < 1) {
+    let id = deck.getId();
+    try {
+      let data = await fetch(
+        `https://deckofcardsapi.com/api/deck/${id}/draw/?count=${number}`
       );
-      window.location.reload();
+      cards = await data.json();
+      deck.availableCards = deck.availableCards - number;
+    } catch {
+      match.errors++;
+      let reload = confirm(
+        "El servidor está dando errores, ¿reiniciar la partida?"
+      );
+      if (reload) {
+        window.location.reload();
+      } else {
+        match.errors--
+      }
     }
-    alert(
-      "No se pudieron traer las cartas, hubo un problema en el servidor. Reintentando..."
-    );
-    match.errors++;
-    auxGetCards();
+    return cards.cards;
   }
-  return cards.cards;
 }
 
 function drawCards(cartas, container) {
