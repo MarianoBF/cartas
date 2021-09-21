@@ -55,7 +55,7 @@ close.addEventListener("click", () => {
   if (match.roundsPlayed > 1) {
     //1 porque suma al final de la mano
     match.endMatch();
-    deck.startMatch();
+    match.startMatch();
   } else {
     match.endRound();
     setTimeout(match.startRound, 1000);

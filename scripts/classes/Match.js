@@ -9,18 +9,22 @@ class Match {
     this.errors = 0;
   }
 
+  startMatch() {
+    deck.startMatch;
+    match.humanRoundCounter.value = 0;
+    match.pcRoundCounter.value = 0;
+    match.tiedRoundCounter.value = 0;
+  }
+
   startRound() {
     start.disabled = true;
-    humanRoundCounter.value = 0;
-    pcRoundCounter.value = 0;
-    tiedRoundCounter.value = 0;
     pcContainer.innerHTML = "";
     humanContainer.innerHTML = "";
     Human.getCards();
+    AI.getCards();
     save_load.disabled = true;
     save_load.innerText = "Guardar";
     setTimeout(()=>{
-      AI.getCards();
       match.showCards()
       change.disabled = false;
     },1000)

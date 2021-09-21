@@ -1,3 +1,5 @@
+// const { match } = require("cypress/types/sinon");
+
 async function getFullDeck() {
   let auxDeck;
   try {
@@ -18,6 +20,7 @@ async function auxGetCards(number) {
       let data = await fetch(
         `https://deckofcardsapi.com/api/deck/${id}/draw/?count=${number}`
       );
+      if (data?.error === "Deck ID does not exist.") {throw new Error}
       cards = await data.json();
       deck.availableCards = deck.availableCards - number;
     } catch {
@@ -80,17 +83,20 @@ function saverLoader() {
         playedRounds: match.roundsPlayed + 1,
         deckId: deck.getId(),
         availableCards: deck.availableCards,
+        date: new Date(),
       };
       console.log(gameState);
       localStorage.setItem("cartas", JSON.stringify(gameState));
-      save_load.innerText = "Cargar";
+      // save_load.innerText = "Cargar";
+      alert("Partida guardada exitosamente")
     } catch {
       alert("No se pudo guardar la partida");
     }
   } else {
     try {
       const gameState = JSON.parse(localStorage.getItem("cartas"));
-      save_load.innerText = "Guardar";
+      // save_load.innerText = "Guardar";
+      console.log(gameState)
       Human.roundsTied = gameState.tiedRounds;
       tiedRoundCounter.value = gameState.tiedRounds;
       Human.roundsWon = gameState.humanRounds;
@@ -106,6 +112,9 @@ function saverLoader() {
       match.roundsPlayed = gameState.playedRounds;
       deck.setId(gameState.deckId);
       deck.availableCards = gameState.availableCards;
+      const date = new Date(gameState.date).toLocaleDateString()
+      alert("Partida de la fecha " + date +" cargada exitosamente");
+      match.startRound();
     } catch {
       alert("No se pudo cargar la partida");
     }
@@ -119,6 +128,8 @@ function openModal() {
   let error = false;
 
   modal.classList.add("openModal");
+
+  inputCardsToChange.focus();
 
   closeModal.addEventListener("click", () => {
     if (inputCardsToChange.value >= 0 && inputCardsToChange.value <= 5) {
