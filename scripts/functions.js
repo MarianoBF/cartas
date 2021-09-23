@@ -129,7 +129,7 @@ function openModal() {
 
   modal.classList.add("openModal");
 
-  inputCardsToChange.focus();
+  setTimeout(()=>inputCardsToChange.focus(),100);
 
   closeModal.addEventListener("click", () => {
     if (inputCardsToChange.value >= 0 && inputCardsToChange.value <= 5) {
