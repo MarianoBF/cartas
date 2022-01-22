@@ -11,9 +11,9 @@ class Match {
 
   startMatch() {
     deck.startMatch;
-    match.humanRoundCounter.value = 0;
-    match.pcRoundCounter.value = 0;
-    match.tiedRoundCounter.value = 0;
+    humanRoundCounter.value = 0;
+    pcRoundCounter.value = 0;
+    tiedRoundCounter.value = 0;
   }
 
   startRound() {
@@ -144,8 +144,6 @@ class Match {
     }
 
     gameStatus.innerText = message;
-
-    console.log(Human.matchesWon, Human.matchesTied, AI.matchesWon)
 
     humanMatchCounter.value = Human.matchesWon;
     pcMatchCounter.value = AI.matchesWon;
