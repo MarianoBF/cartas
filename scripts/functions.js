@@ -145,14 +145,14 @@ function openModal() {
   setTimeout(() => inputCardsToChange.focus(), 100);
 
   closeModal.addEventListener("click", () => {
-    if (inputCardsToChange.value >= 0 && inputCardsToChange.value <= 5) {
+    if (inputCardsToChange.value.match(/\d/) && inputCardsToChange.value >= 0 && inputCardsToChange.value <= 5) {
       modal.classList.remove("openModal");
       if (error) {
-        modalError.classlist.remove("visible");
+        modalError.classList.remove("visible");
         error = false;
       }
     } else {
-      modalError.classlist.add("visible");
+      modalError.classList.add("visible");
       error = true;
     }
   });
