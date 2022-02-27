@@ -1,3 +1,12 @@
+/* global
+cy
+describe
+before
+it
+context
+expect
+ */
+
 export function testMatch() {
 
   const inputCardsToChange = {}
@@ -17,7 +26,7 @@ export function testMatch() {
       cy.get("#modalClose").should("not.be.disabled").wait(50).click();
       cy.get("#show").should("not.be.disabled").wait(50).click();
       cy.get("#score").should("not.be.disabled").wait(50).click();
-      cy.get("#close").should("not.be.disabled").wait(150).click();
+      cy.get("#endRound").should("not.be.disabled").wait(150).click();
 
       cy.get("#change").should("not.be.disabled").wait(150).click();
       cy.get("#cardsToChange").clear().wait(50);
@@ -25,7 +34,7 @@ export function testMatch() {
       cy.get("#modalClose").should("not.be.disabled").wait(50).click();
       cy.get("#show").should("not.be.disabled").wait(50).click();
       cy.get("#score").should("not.be.disabled").wait(50).click();
-      cy.get("#close").should("not.be.disabled").wait(150).click();
+      cy.get("#endRound").should("not.be.disabled").wait(150).click();
 
       cy.get("#change").should("not.be.disabled").wait(150).click();
       cy.get("#cardsToChange").clear().wait(50);
@@ -33,7 +42,7 @@ export function testMatch() {
       cy.get("#modalClose").should("not.be.disabled").wait(50).click();
       cy.get("#show").should("not.be.disabled").wait(50).click();
       cy.get("#score").should("not.be.disabled").wait(50).click();
-      cy.get("#close").should("not.be.disabled").wait(150).click();
+      cy.get("#endRound").should("not.be.disabled").wait(150).click();
     });
   });
 }

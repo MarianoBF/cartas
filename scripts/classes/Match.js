@@ -88,7 +88,7 @@ class Match {
     pcRoundCounter.value = AI.roundsWon;
     tiedRoundCounter.value = Human.roundsTied;
     score.disabled = true;
-    close.disabled = false;
+    endRound.disabled = false;
     save_load.disabled = false;
   }
 
@@ -96,7 +96,7 @@ class Match {
     gameStatus.innerText = "Preparando siguiente mano...";
     Human.cleanUp();
     AI.cleanUp();
-    close.disabled = true;
+    endRound.disabled = true;
     this.roundsPlayed++;
     save_load.disabled = true;
   }
@@ -150,7 +150,7 @@ class Match {
     tiedMatchCounter.value = Human.matchesTied;
 
     gameStatus.innertext = message;
-    close.disabled = true;
+    endRound.disabled = true;
     start.disabled = false;
     AI.roundsWon = 0;
     Human.roundsWon = 0;
