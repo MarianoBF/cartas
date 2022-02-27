@@ -1,4 +1,12 @@
-/* exported 
+/* global
+Player
+Match
+Deck
+saverLoader
+showRules
+*/
+
+/* exported
 Human
 AI
 pcContainer
@@ -14,21 +22,15 @@ inputCardsToChange
 cardsBack
 */
 
-/*global 
-Player
-Match
-Deck
-saverLoader
-showRules
-*/
-
-let Human = new Player("Humano", true);
-let AI = new Player("PC", false);
-let match = new Match();
-let deck = new Deck();
+const Human = new Player("Humano", true);
+const AI = new Player("PC", false);
+const match = new Match();
+const deck = new Deck();
 deck.startMatch();
 
-//Referencias
+console.log("aa");
+
+// Referencias
 const pcContainer = document.getElementById("pcContainer");
 const humanContainer = document.getElementById("humanContainer");
 const start = document.getElementById("start");
@@ -37,7 +39,7 @@ const show = document.getElementById("show");
 const score = document.getElementById("score");
 const endRound = document.getElementById("endRound");
 const rules = document.getElementById("rules");
-const save_load = document.getElementById("save_load");
+const saveLoad = document.getElementById("saveLoad");
 const gameStatus = document.getElementById("status");
 const humanRoundCounter = document.getElementById("humanRoundCounter");
 const pcRoundCounter = document.getElementById("pcRoundCounter");
@@ -49,24 +51,24 @@ const inputCardsToChange = document.getElementById("cardsToChange");
 
 const cardsBack = [
     {
-        image: "./images/back.png",
+        image: "./images/back.png"
     },
     {
-        image: "./images/back.png",
+        image: "./images/back.png"
     },
     {
-        image: "./images/back.png",
+        image: "./images/back.png"
     },
     {
-        image: "./images/back.png",
+        image: "./images/back.png"
     },
     {
-        image: "./images/back.png",
-    },
+        image: "./images/back.png"
+    }
 ];
 
-//Event listeners
-save_load.addEventListener("click", () => saverLoader());
+// Event listeners
+saveLoad.addEventListener("click", () => saverLoader());
 rules.addEventListener("click", showRules);
 start.addEventListener("click", () => match.startRound());
 show.addEventListener("click", () => match.showChangedCards());
@@ -74,7 +76,7 @@ change.addEventListener("click", () => match.changecards());
 score.addEventListener("click", () => match.compareCards());
 endRound.addEventListener("click", () => {
     if (match.roundsPlayed > 1) {
-        //1 porque suma al final de la mano
+        // 1 porque suma al final de la mano
         match.endMatch();
         match.startMatch();
     } else {

@@ -12,7 +12,7 @@ tiedMatchCounter
 inputCardsToChange
 match
 deck
-save_load
+saveLoad
 */
 
 /* exported
@@ -22,13 +22,14 @@ drawCards
 addScore
 showRules
 saverLoader
-openModal */
+openModal
+*/
 
-async function getFullDeck() {
+async function getFullDeck () {
     let auxDeck;
     try {
-        let data = await fetch(
-            "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1",
+        const data = await fetch(
+            "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1"
         );
         auxDeck = await data.json();
     } catch {
@@ -37,12 +38,13 @@ async function getFullDeck() {
     return auxDeck;
 }
 
-async function auxGetCards(number) {
+async function auxGetCards (number) {
+    let cards;
     if (match.errors < 1) {
-        let id = deck.getId();
+        const id = deck.getId();
         try {
-            let data = await fetch(
-                `https://deckofcardsapi.com/api/deck/${id}/draw/?count=${number}`,
+            const data = await fetch(
+                `https://deckofcardsapi.com/api/deck/${id}/draw/?count=${number}`
             );
             // if (data?.error === "Deck ID does not exist.") {
             //   throw new Error();
@@ -51,8 +53,8 @@ async function auxGetCards(number) {
             deck.availableCards = deck.availableCards - number;
         } catch {
             match.errors++;
-            let reload = confirm(
-                "El servidor está dando errores, ¿reiniciar la partida?",
+            const reload = confirm(
+                "El servidor está dando errores, ¿reiniciar la partida?"
             );
             if (reload) {
                 window.location.reload();
@@ -64,40 +66,41 @@ async function auxGetCards(number) {
     }
 }
 
-function drawCards(cartas, container) {
+function drawCards (cartas, container) {
     cartas.forEach(carta => {
-        let img = document.createElement("IMG");
+        const img = document.createElement("IMG");
         img.src = carta.image;
         container.append(img);
     });
 }
 
-function addScore(hand) {
+function addScore (hand) {
     let sum = 0;
     hand.forEach(element => {
-        element.value === "JACK" ||
-        element.value === "QUEEN" ||
-        element.value === "KING"
-            ? (element.value = 10)
-            : null;
-        element.value === "ACE" ? (element.value = 15) : null;
+        element.value =
+            element.value === "JACK" ||
+            element.value === "QUEEN" ||
+            element.value === "KING"
+                ? 10
+                : element.value;
+        element.value = element.value === "ACE" ? 15 : element.value;
         sum += +element.value;
     });
     return sum;
 }
 
-function showRules() {
+function showRules () {
     alert(
         "Se suman los puntajes de cada carta numérica, las figuras (J,Q,K) suman 10 puntos y el As 15 puntos.\n" +
             "Podés cambiar algunas cartas en la ronda intermedia. \n" +
             "El mejor de 3 manos, gana. \n" +
             "Al terminar cada ronda podés grabar. \n" +
-            "Para avanzar los pasos, vas apretando cada botón",
+            "Para avanzar los pasos, vas apretando cada botón"
     );
 }
 
-function saverLoader() {
-    if (save_load.innerText === "Guardar") {
+function saverLoader () {
+    if (saveLoad.innerText === "Guardar") {
         try {
             const gameState = {
                 tiedRounds: Human.roundsTied,
@@ -109,10 +112,10 @@ function saverLoader() {
                 playedRounds: match.roundsPlayed + 1,
                 deckId: deck.getId(),
                 availableCards: deck.availableCards,
-                date: new Date(),
+                date: new Date()
             };
             localStorage.setItem("cartas", JSON.stringify(gameState));
-            // save_load.innerText = "Cargar";
+            // saveLoad.innerText = "Cargar";
             alert("Partida guardada exitosamente");
         } catch {
             alert("No se pudo guardar la partida");
@@ -120,7 +123,7 @@ function saverLoader() {
     } else {
         try {
             const gameState = JSON.parse(localStorage.getItem("cartas"));
-            // save_load.innerText = "Guardar";
+            // saveLoad.innerText = "Guardar";
             Human.roundsTied = gameState.tiedRounds;
             tiedRoundCounter.value = gameState.tiedRounds;
             Human.roundsWon = gameState.humanRounds;
@@ -141,14 +144,12 @@ function saverLoader() {
             checkDeck(gameState.deckId).then(res => {
                 if (res.status === 200) {
                     alert(
-                        "Partida de la fecha " +
-                            date +
-                            " cargada exitosamente.",
+                        "Partida de la fecha " + date + " cargada exitosamente."
                     );
                     match.startRound();
                 } else {
                     alert(
-                        "Hubo un problema al traer el mazo, probablemente se venció su vigencia. Deberás reiniciar la partida",
+                        "Hubo un problema al traer el mazo, probablemente se venció su vigencia. Deberás reiniciar la partida"
                     );
                 }
             });
@@ -158,14 +159,14 @@ function saverLoader() {
     }
 }
 
-function checkDeck(id) {
+function checkDeck (id) {
     return fetch("https://deckofcardsapi.com/api/deck/" + id + "/shuffle/");
 }
 
-function openModal() {
-    let modal = document.getElementById("modal");
-    let closeModal = document.getElementById("modalClose");
-    let modalError = document.getElementById("modalError");
+function openModal () {
+    const modal = document.getElementById("modal");
+    const closeModal = document.getElementById("modalClose");
+    const modalError = document.getElementById("modalError");
     let error = false;
 
     modal.classList.add("openModal");
