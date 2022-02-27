@@ -13,7 +13,7 @@ context("Assertions", () => {
         cy.visit("localhost:5500");
     });
 
-    describe("buttonss", () => {
+    describe("buttons", () => {
         it("Ajustar", () => {
             cy.get("#start")
                 .should("have.text", "Iniciar nuevo partido")
@@ -39,8 +39,9 @@ context("Assertions", () => {
                 .should("have.text", "Mostrar Reglas")
                 .should("not.be.disabled")
                 .click();
-            cy.on("window:alert", message => expect(message).to.match(/los puntajes/));        }
+            cy.on("window:alert", message => expect(message).to.match(/los puntajes/));
+        }
 
-        );});
-
+        );
+    });
 });
