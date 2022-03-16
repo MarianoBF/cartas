@@ -28,8 +28,6 @@ const match = new Match();
 const deck = new Deck();
 deck.startMatch();
 
-console.log("aa");
-
 // Referencias
 const pcContainer = document.getElementById("pcContainer");
 const humanContainer = document.getElementById("humanContainer");
