@@ -169,7 +169,10 @@ class Match {
         }
 
         if (winner === "Empate") {
-            message = message + "No ganó nadie, perdieron los dos";
+            message =
+                "No ganó nadie, perdieron los dos porque empataron " +
+                Human.roundsTied +
+                " manos";
         }
 
         gameStatus.innerText = message;
